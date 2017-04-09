@@ -1,0 +1,55 @@
+2.IDEA编辑器
+ 下载安装：http://www.cnblogs.com/yjmyzz/p/intellij-idea-13-getting-started.html  360浏览器不可下载，火狐可以
+   安装：http://jingyan.baidu.com/article/e75057f2c030ecebc91a89af.html
+   注册：注册方法:   注册码可以沿用14的,只是在 注册时选择 License server ，填 http://idea.lanyus.com ，然后点击 OK 这样注册下  只要联网就可以永远使用
+ 可以在安装的时候注册，也可以安装后注册，help---Registers
+
+
+ 使用：
+  idea页面的调整：http://blog.csdn.net/jacksonning/article/details/8720195
+  工具栏的调整：view--Toolbar/Navigation Bar
+
+ http://www.cnblogs.com/yjmyzz/p/intellij-idea-13-getting-started.html
+http://www.youmeek.com/
+http://jingyan.baidu.com/article/fd8044fad2edcf5030137a67.html
+http://video.so.com/v?q=idea14%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B
+
+360网盘： 13121987867   360hpf15136417119
+
+ project相当于MyEclipse的工作空间，module相当于MyEclipse的project
+
+ IDEA:IDEA15 设置JDK, http://blog.csdn.net/guliangliang/article/details/50358821
+
+  配置Tomact:
+        http://www.tuicool.com/articles/beMbQ3 打开  Run ---Configurations
+http://jingyan.baidu.com/article/0a52e3f43d9f69bf62ed72f9.html
+同时要设置成这样，以免每次改动都要重启服务http://www.oschina.net/question/194770_91781?sort=time&p=1
+
+
+
+ 配置maven:
+http://blog.csdn.net/xxb2008/article/details/8772634
+http://my.oschina.net/henghanan/blog/202344
+http://www.cnblogs.com/jifeng/p/4658765.html
+   svn配置:
+http://blog.csdn.net/guliangliang/article/details/50358821
+好后file--new --project  from  version control配置svn的路径
+
+http://www.68idc.cn/help/buildlang/ask/20150625384031.html
+
+http://my.oschina.net/someok/blog/474884?fromerr=I47brry1#OSC_h1_3
+
+
+http://blog.csdn.net/tiantiandjava/article/details/41204607
+
+http://bbs.csdn.net/topics/390151098
+http://www.jianshu.com/p/fb7bddca7b1e
+
+
+idea的一些配置：
+ 快捷键 http://blog.csdn.net/luoweifu/article/details/13985835
+  背景及字体：http://jingyan.baidu.com/article/4e5b3e19330df191911e246b.html
+
+http://www.blogjava.net/rockblue1988/archive/2014/10/24/418994.html
+
+

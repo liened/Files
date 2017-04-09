@@ -1,0 +1,45 @@
+服务端：
+1.安装git: yun install git
+2.创建文件夹来作为git的资源仓库。然后在里面创建工程文件夹，如果：
+	mdir gitrepo ,mkdir project1
+3.进到工程文件夹里面，用Git命令创建一个空的仓库： git init --bare
+4.客户端clone： ssh://root@192.xx.xx.xx:22/usr/common/gitrepo/project1/
+
+本地TortoiseGit的使用：
+1.设置提交的姓名和邮件：
+	新建文件夹，右击TortoiseGit-setting，General里面Git for Windows自动找mSysgit路径。
+	Git项选Global。然后下面是用户名和email。
+2.初始化git仓库：
+	右击Git create repository here,不用勾选弹出框“Make it Bare”。
+相关连接：
+ 1. Git安装与配置： http://blog.csdn.net/lzm18064126848/article/details/53346444
+ 2.TortoiseGit安装与配置： http://blog.csdn.net/lzm18064126848/article/details/53346457
+
+
+【SSH】github 添加SSH: http://www.cnblogs.com/lexiaofei/p/6360571.html：
+	1.首先需要检查电脑是否已经有SSH key: $ cd ~/.ssh 如果文件存在，里面就是放的keys。
+	2.创建一个SSH key: $ ssh-keygen -t rsa -C "your_email@xx.com"
+		代码参赛含义:
+		-t 指定密钥类型，默认是rsa,可以忽略。
+		-C 设置注释文字，比如邮箱。
+		-f 指定密钥文件存储文件名。
+		以上代码省略了-f参数，因此运行后会让你输入保存的文件名(可以不输用默认的)。
+		接着提示输入push文件时的密码，不输密码直接回车。
+	3.添加SSH key到github上去
+		a.拷贝id_rsa.pub文件内容，Windows环境下也可以用命令进行复制： $ clip < ~/.ssh/id_rsa_pub
+		b.登录github帐号，添加SSH key并粘贴复制的内容。
+	4.测试一下该SSH key： $ ssh -T git@github.com
+		当输入以上代码时，会有一段警告是正常的。
+		
+【git常用命令】
+　  git init //把这个目录变成Git可以管理的仓库
+　　git add README.md //文件添加到仓库
+　　git add . //不但可以跟单一文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了 
+　　git commit -m "first commit" //把文件提交到仓库
+　　git remote add origin git@github.com:wangjiax9/practice.git //关联远程仓库
+　　git push -u origin master //把本地库的所有内容推送到远程库上(-u 首次提交)
+
+git错误:
+1.git push -u origin master 如果本地文件不包含服务器上的文件，后面加参数-f即可。注意这样会把服务器上的全部替换掉。
+2.git pull origin master --allow-unrelated-histories 因为两个仓库不同，发现refusing to merge unrelated histories，无法pull,假如我们的源是origin，分支是master，那么这样写就行了。
+3.在没有配置SSH的时候，有时候 git clone失败提示CApath:none :这个CA证书的问题，不仅导致我git clone失败，go get也用不了，弄了半天的CA证书，发现有个简单粗暴的方法：git config --global http.sslVerify false

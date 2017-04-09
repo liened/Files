@@ -1,0 +1,77 @@
+问题一：CentOS7 minimal无法联网：
+	1、nmcli d 查看ethernet是否连接
+	2、nmtui   网络配置图形化界面，编辑IPV4为自动，并勾选开机自动连接选项。
+	3、service network restart 重启
+	但是在编辑页面开机自动连接选项不能选择，所以此次方法没有生效。
+
+	最终解决的方法：http://jingyan.baidu.com/album/a681b0de7b463b3b184346fc.html?picindex=1
+	1、查看网卡是否配置好；1、通过< ip a >命令找到你的网卡名
+	2、通过配置文件 vi /etc/sysconfig/network-scripts/ifcfg-eno16777736（通过ip a查找到的网卡名） 编辑网卡，将里面的NAME项修改为eth0
+	3、修改网卡名为eth0
+	4、通过编辑配置文件 vi /etc/default/grub并加入< net.ifnames=0 biosdevname=0 >到GRUB_CMDLINE_LINUX
+	5、运行命令grub2-mkconfig -o /boot/grub2/grub.cfg 来重新生成GRUB配置并更新内核参数。
+	6、重启系统，然后通过 < ip a > 验证。 
+
+
+问题二：1.yum -y list java*
+		2.yum -y install java-1.8.0-openjdk*
+		安装的java不用配置环境变量
+		
+SSH:
+ 1.查看SSH是否已经安装：rpm -qa |grep ssh 如果出现了openssh-x.x开头的软件名，代表已经安装。如果没有安装，执行： yum install ssh。
+ 2.如果已经安装，查看是否启动: systemctl status sshd.service 出现active(running)关键字代表已经启动。如果没启动： service sshd start。
+   重启时只需把start改为restart。
+ 3.设为开机启动：chkconfig sshd on
+ 4.查看ssh服务使用哪个端口：grep Port /ect/ssh/ssh_config 一般都是22端口，修改的话修改这个文件的Port。
+ 5.客户端连接:ssh ip即可。
+ 附：查看端口占用命令： netstat -tnl
+ 
+Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
+	http://www.linuxdown.net/install/config/2016/0611/5853.html
+	
+
+http://blog.csdn.net/xwq2324/article/details/51050233  虚拟机三种网络连接方式
+================================================================================
+查看软件是否安装： rpm -qa |grep ssh
+查看服务是否开启： systemctl status sshd.service
+修改了系统PATH使之生效： ..bashrc
+================================================================================
+http://blog.csdn.net/u010009038/article/details/52880552 开放tomcat端口
+
+Centos7 开放端口 
+Centos升级到7之后，发现无法使用iptables控制Linuxs的端口，google之后发现Centos 7使用firewalld代替了原来的iptables。下面记录如何使用firewalld开放Linux端口：
+
+开启端口
+
+firewall-cmd –zone=public –add-port=80/tcp –permanent
+
+命令含义：
+
+–zone #作用域
+
+–add-port=80/tcp #添加端口，格式为：端口/通讯协议
+
+–permanent #永久生效，没有此参数重启后失效
+
+重启防火墙
+
+firewall-cmd –reload
+
+详细信息可以参考以下资料：
+
+http://stackoverflow.com/questions/24729024/centos-7-open-firewall-port
+
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html
+================================================================================
+
+
+相关链接：
+https://linux.cn/article-3631-1.html centos mini ifconfig
+
+http://seisman.info/linux-environment-for-seismology-research.html  用 CentOS 7 打造合适的科研环境
+http://www.open-open.com/lib/view/open1452739029620.html CentOS7 mini配置网络
+
+https://linux.cn/article-5341-1.html 安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情
+http://www.cnblogs.com/c-xiaohai/archive/2017/03.html CentOS7 Linux
+
+http://blog.csdn.net/hunanchenxingyu/article/details/40544513   ssh 公钥认证方式登录
