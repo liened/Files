@@ -42,8 +42,9 @@
 	git status 命令可以让我们时刻掌握仓库当前的状态。
 	git diff Git.txt 此案例中，上面的命令显示Git.txt文件被修改了，这个命令是查看diff。
 	提交修改：
-	1). git add Git.txt
-	修改刚刚commit的注释:在提交目录里面输入: git commit --amend。在vi打开的文件里面修改即可，然后重新push。 
+		1). git add Git.txt
+		2).git commit -m 提交即可。
+	git commit --amend 修改刚刚commit的注释,在vi打开的文件里面修改即可，然后重新push。 
 
 
 【git错误】:
