@@ -45,7 +45,10 @@
 		1). git add Git.txt
 		2).git commit -m 提交即可。
 	git commit --amend 修改刚刚commit的注释,在vi打开的文件里面修改即可，然后重新push。 
-
+	git config --list 查看配置
+	git config --global user.name "xxx"
+	git config --global user.email "xx@xx"
+	
 
 【git错误】:
 1.git push -u origin master 如果本地文件不包含服务器上的文件，后面加参数-f即可。注意这样会把服务器上的全部替换掉。
