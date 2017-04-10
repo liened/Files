@@ -32,25 +32,31 @@
 		当输入以上代码时，会有一段警告是正常的。
 		
 【git常用命令】
-　  git init //把这个目录变成Git可以管理的仓库
+    git init //把这个目录变成Git可以管理的仓库
 　　git add README.md //文件添加到仓库
 　　git add . //不但可以跟单一文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了 
 　　git commit -m "first commit" //把文件提交到仓库
 　　git remote add origin git@github.com:wangjiax9/practice.git //关联远程仓库
 　　git push -u origin master //把本地库的所有内容推送到远程库上(-u 首次提交)
 	
-	git status 命令可以让我们时刻掌握仓库当前的状态。
-	git diff Git.txt 此案例中，上面的命令显示Git.txt文件被修改了，这个命令是查看diff。
+　　git status 命令可以让我们时刻掌握仓库当前的状态。
+　　git diff Git.txt 此案例中，上面的命令显示Git.txt文件被修改了，这个命令是查看diff。
 	提交修改：
 		1). git add Git.txt
 		2).git commit -m 提交即可。
-	git commit --amend 修改刚刚commit的注释,在vi打开的文件里面修改即可，然后重新push。 
-	git config --list 查看配置
-	git config --global user.name "xxx"
-	git config --global user.email "xx@xx"
+　　git commit --amend 修改刚刚commit的注释,在vi打开的文件里面修改即可，然后重新push。 
+　　git config --list 查看配置
+　　git config --global user.name "xxx"
+　　git config --global user.email "xx@xx"
 	
 
 【git错误】:
 1.git push -u origin master 如果本地文件不包含服务器上的文件，后面加参数-f即可。注意这样会把服务器上的全部替换掉。
 2.git pull origin master --allow-unrelated-histories 因为两个仓库不同，发现refusing to merge unrelated histories，无法pull,假如我们的源是origin，分支是master，那么这样写就行了。
 3.在没有配置SSH的时候，有时候 git clone失败提示CApath:none :这个CA证书的问题，不仅导致我git clone失败，go get也用不了，弄了半天的CA证书，发现有个简单粗暴的方法：git config --global http.sslVerify false
+4.用tortoiseGit的ssh方式pull时报如下错误：disconnected no supported authentication methods available(server sent: publickey，keyboard interactive）
+  解决方案：
+  因为TortoiseGit和Git的冲突 我们需要把TortoiseGit设置改正如下：
+    1.找到TortoiseGit -> Settings -> Network
+    2.将SSH client指向git\bin\ssh.exe(Git安装路径下,我的路径是 Git\usr\bin\ssh.exe)
+  然后便可正确push和pull
