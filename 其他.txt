@@ -1,0 +1,11 @@
+1.打开方式中没有NotePad++，解决方法链接：http://blog.csdn.net/jl1134069094/article/details/50749075
+
+http://www.jiuzhang.com/solutions/ leetCode 答案
+
+response.setHeader("Access-Control-Allow-Origin","*");//解决跨域问题
+response.setHeader("Access-Control-Allow-Credentials","true"); //解决cookie问题
+
+
+http://fontawesome.dashgame.com/ 图标库连接
+
+http://www.uml.org.cn/  火龙果
