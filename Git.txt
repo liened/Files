@@ -48,6 +48,7 @@
 ¡¡¡¡git config --list ²é¿´ÅäÖÃ
 ¡¡¡¡git config --global user.name "xxx"
 ¡¡¡¡git config --global user.email "xx@xx"
+	git reset --hard commit_id  »ØÍËcommit
 	
 
 ¡¾git´íÎó¡¿:
