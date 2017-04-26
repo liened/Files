@@ -50,6 +50,10 @@
 　　git config --global user.email "xx@xx"
 	git reset --hard commit_id  回退commit
 	
+	git branch -a 查看远程分支
+	git branch    查看本地分钟
+	git checkout xxx  切换到xxx分支
+
 
 【git错误】:
 1.git push -u origin master 如果本地文件不包含服务器上的文件，后面加参数-f即可。注意这样会把服务器上的全部替换掉。
