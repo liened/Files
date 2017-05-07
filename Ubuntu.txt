@@ -1,0 +1,178 @@
+一、安装及初始化:
+1.安装的ubuntu版本是 ubuntu-15.10-server-amd64.iso
+2.进行linux的一些配置,命令: sudo dpkg-reconfigure console-setup
+3.root解锁，其实就是root密码重置： sudo passwd root
+4.关闭防火墙： ufw disable 
+ 卸载iptables: apt-get remove iptables
+5.下载vim组件： apt-get install vim 
+
+二、linux远程连接：
+1.为系统安装ssh工具: apt-get install openssh-server  本机安装时报错了，解决方法：http://www.2cto.com/os/201703/610229.html
+2.启动ssh服务: /etc/init.d/ssh start 
+3.查看进程: ps -e|grep sshd 
+4.ubuntu比较麻烦，默认不允许root用户登录。需要修改一下，命令： 
+ vim /etc/ssh/sshd_config 随后将PermitRootLogin 值改为yes
+ 修改完成后重新启动ssh即可: /etc/init.d/ssh restart 
+ 
+/* 用rz 得了,不用配置这么多了.或者wget url下载 
+三、配置Ftp:
+1.需要 vsftpd组件: apt-get install vsftpd 
+2.完成后会自动为系统创建一个ftp用户，为方便起见，建议修改ftp用户的密码：passwd ftp
+3.当ftp服务安装完成之后，会自动创建一个目录: /srv/ftp 目录。为方便起见，设置这个文件为全权限: chmod 777 /srv/ftp 
+4.如果要想让ftp可以正常工作，还要修改vsftpd.conf文件: vim /etc/vsftpd.conf 
+  1).设置不运行匿名登录: anonymous_enable=NO
+  2).允许本地用户登录:  local_enable=YES
+  3).是否将所以用户限制在主目录: chrool_local_user=YES
+  4).是否启用限制用户的名单: chrool_list_enable=YES
+  5).设置名单目录: chroot_list_file=/etc/vsftpd.chroot_list
+  6).在vsftpd.chrool_list下加一个服务配置: pam_service_name=vsftpd 
+5.随后增加一个/etc/vsftpd.chroot_list文件. 内容: ftp
+6.修改"/etc/pam.d/vsftpd":
+  注释掉一下内容：auth required pam_shells.so
+7.启动vsftpd: service vsftpd start (重启restart)
+*/
+
+四、克隆虚拟机
+
+五、jdk安装与配置
+1.上传jdk到/usr/local并解压并修改文件夹名称为jdk(改名是为了使用方便)
+2.利用vim打开"/etc/profile"文件： vim /etc/profile 【注意:多个路径用冒号分割,不同于Windows的逗号】
+  在最下面配置：export JAVA_HOME=/usr/local/jdk
+				export PATH=$PATH:$JAVA_HOME/bin
+				export CLASS_PATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+3.默认情况下修改了环境变量，必须重启才能读取新的配置。不重启的话可以用source可以让配置立刻生效：source /etc/profile
+
+
+六、安装Hadoop:
+1.从www.apache.org --> projects --> hadoop 下载hadoop，本例中用的是2.7.2
+2.跟jdk一样，上传到/usr/local文件夹,解压并改名为"hadoop"
+3.跟jdk一样，配置环境变量。vim /etc/profile : export HADOOP_HOME=/usr/local/hadoop  PATH改为：export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:
+4.让配置立刻生效: source /etc/profile
+5.因为hadoop需要jdk支持，所以要在hadoop里面指定要使用的jdk。修改的文件路径：
+  /usr/local/hadoop/etc/hadoop/hadoop-env.sh,修改export JAVA_HOME=/usr/local/jdk
+  
+七、hadoop的单词统计
+1.在hadoop文件夹下创建一个input目录.input有一个记录不同单词的txt文件。
+2.执行: hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.2-sources.jar org.apache.hadoop.examples.WordCount input output
+  output中将会是解析出来的结果文件。
+  
+八、基于伪分布式的Hadoop配置
+1.hadoop里面不运行ip变更。
+2.为了保证配置方便，给每个电脑配置主机名称。vim /etc/hostname
+3.修改主机名称映射，修改/etc/hosts文件,在里面追加ip地址和主机名的映射。
+4.修改完成后reboot重启。
+5.hadoop的处理过程中都是用ssh通讯的，所以就算是在本机，也必须在电脑上配置ssh免登录处理。
+  1).由于电脑上有可能已经出现过ssh的相关配置，所以建议删除根目录下的.ssh的文件夹: 
+  2).在hadoop主机生成ssh key: ssh-keygen -t rsa 
+  3).免登录，将公钥copy到authorized_keys中: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+6.配置hadoop的配置文件,路径：usr/local/hadoop/etc/hadoop:
+  1).配置"core-site.xml",配置hadoop的核心信息，包括临时目录、访问地址等。
+  2).配置"yarn-site.xml",可以简单理解为配置相关的job的处理。
+  3).配置"hdfs-site.xml",可以确定文件的备份个数以及数据文件夹的路径。
+7.core-site.xml:
+	<configuration>
+		<property>
+			<name>hadoop.tmp.dir</name>
+			<value>/home/root/hadoop_tmp</value>
+		</property>
+		<property>
+			<name>fs.defaultFS</name>
+			<value>hdfs://hadoopm:9000</value>
+		</property>
+	</configuration>
+	hadoop 2.x默认端口9000，如果是1.x的话是8020.
+8.hdfs-site.xml
+	<configuration>
+		<property>
+			<name>dfs.replication</name>  文件副本数，一般一个文件会备份3份。
+			<value>1</value>
+		</property>
+		<property>
+			<name>dfs.namenode.name.dir</name>
+			<value>file:///usr/local/hadoop/dfs/name</value>
+		</property>
+		<property>
+			<name>dfs.datanode.data.dir</name>
+			<value>file:///usr/local/hadoop/dfs/data</value>
+		</property>
+		<property>
+			<name>dfs.namenode.http-address</name>
+			<value>hadoopm:50070</value>
+		</property>
+		<property>
+			<name>dfs.namenode.secondary.http-address</name>
+			<value>hadoopm:50090</value>
+		</property>
+		<property>
+			<name>dfs.permissions</name> 权限认证问题
+			<value>false</value>
+		</property>
+	</configuration>
+9.yarn-site.xml
+	<configuration>
+		<property>
+			<name>yarn.resourcemanager.admin.address</name>
+			<value>hadoopm:8033</value>
+		</property>
+		<property>
+			<name>yarn.nodemanager.aux-services</name>
+			<value>mapreduce_shuffle</value>
+		</property>
+		<property>
+			<name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+			<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+		</property>
+		<property>
+			<name>yarn.resourcemanager.resource-tracker.address</name>
+			<value>hadoopm:8025</value>
+		</property>
+		<property>
+			<name>yarn.resourcemanager.scheduler.address</name>
+			<value>hadoopm:8030</value>
+		</property>
+		<property>
+			<name>yarn.resourcemanager.address</name>
+			<value>hadoopm:8050</value>
+		</property>
+		<property>
+			<name>yarn.resourcemanager.webapp.address</name>
+			<value>hadoopm:8088</value>
+		</property>
+		<property>
+			<name>yarn.resourcemanager.webapp.https.address</name>
+			<value>hadoopm:8090</value>
+		</property>
+	</configuration>
+10.由于hadoop属于分布式的开发环境，所以建议在"/usr/local/hadoop/etc/hadoop"目录中创建一个masters的文件
+  里面写上主机的名称，内容就是hadoopm.如果是单击环境，不写也没关系，建议都写。
+11.修改从节点文件，增加hadoopm。
+12.由于此时是将所有的namenode、datanode保存路径设置在了hadoop的目录中，如果为了保险起见，可以自己创建。
+  本例中是在/usr/local/hadoop 中创建文件夹: mkdir dfs dfs/name dfs/data
+  注意：如果hadoop出现了问题，一定要将这两个文件夹彻底删除掉。
+13.格式化: hdfs namenode -format 。 如果结果出现  Exiting with status 0,表示格式化成功。
+14.启动: /usr/local/hadoop/etc/hadoop 下执行  start-all.sh 
+   可以用jps来查看有几个java进程，如果有六个(包含jps)，看看六个的名字，就启动成功。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
