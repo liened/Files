@@ -11,7 +11,8 @@ http://www.cnblogs.com/HondaHsu/p/3641116.html
 http://git.oschina.net/progit/index.html
 
 
-http://www.cnblogs.com/qifengshi/p/6036870.html IDEA打包
+
+
 
 1.打开方式中没有NotePad++，解决方法链接：http://blog.csdn.net/jl1134069094/article/details/50749075
 
