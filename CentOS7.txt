@@ -1,21 +1,58 @@
-问题一：CentOS7 minimal无法联网：
-	1、nmcli d 查看ethernet是否连接
-	2、nmtui   网络配置图形化界面，编辑IPV4为自动，并勾选开机自动连接选项。
-	3、service network restart 重启
-	但是在编辑页面开机自动连接选项不能选择，所以此次方法没有生效。
-
-	最终解决的方法：http://jingyan.baidu.com/album/a681b0de7b463b3b184346fc.html?picindex=1
+===================================
+CentOS root admin123
+      rootdog rootdog123
+	  tech tech123
+===================================
+一、CentOS 7 minimal 配置网卡以及使用CRT远程连接 http://jingyan.baidu.com/album/a681b0de7b463b3b184346fc.html?picindex=1
+	配置网卡:
 	1、查看网卡是否配置好；1、通过< ip a >命令找到你的网卡名
-	2、通过配置文件 vi /etc/sysconfig/network-scripts/ifcfg-eno16777736（通过ip a查找到的网卡名） 编辑网卡，将里面的NAME项修改为eth0
-	3、修改网卡名为eth0
-	4、通过编辑配置文件 vi /etc/default/grub并加入< net.ifnames=0 biosdevname=0 >到GRUB_CMDLINE_LINUX
+	2、通过配置文件 vi /etc/sysconfig/network-scripts/ifcfg-eno16777736（通过ip a查找到的网卡名,此例中是ifcfg-eno16777736） 编辑网卡，将里面的NAME项修改为eth0,DEVICE=eth0 ONBOOT=yes
+	3、修改网卡名为eth0 mv ifcfg-eno16777736 ifcfg-eth0
+	4、通过编辑配置文件 vi /etc/default/grub并加入" net.ifnames=0 biosdevname=0 "到GRUB_CMDLINE_LINUX
 	5、运行命令grub2-mkconfig -o /boot/grub2/grub.cfg 来重新生成GRUB配置并更新内核参数。
 	6、重启系统，然后通过 < ip a > 验证。 
 
+	远程连接CentOS:
+	1.在Windows上ping一下CentOS的网卡如果能通用连接工具链接即可。
+	
+	
+	其他类似问题：
+	CentOS7 minimal无法联网：
+	1、nmcli d 查看ethernet是否连接
+	2、nmtui   网络配置图形化界面，编辑IPV4为自动，并勾选开机自动连接选项。
+	3、service network restart 重启										【【service 这个命令倒是和Ubuntu一样的】】
+	但是在编辑页面开机自动连接选项不能选择，所以此次方法没有生效。
+	http://www.open-open.com/lib/view/open1452739029620.html CentOS7 mini配置网络，【【这个倒是没写更改ifcfg-xx文件】】
 
-问题二：1.yum -y list java*
-		2.yum -y install java-1.8.0-openjdk*
-		安装的java不用配置环境变量
+二、修改主机名(http://www.centoscn.com/m/view.php?aid=8068)
+	1.可以通过hostname 或uname -n 来查看主机名
+	2.通过命令: hostname xxx 临时设置主机名在重启后会失效。
+	3.修改两个文件:
+		/etc/sysconfig/network: HOSTNAME=localhost.localdomain (如果是默认的话），修改 localhost.localdomain 为你的主机名。
+		/etc/hosts:打开该文件，会有一行 127.0.0.1 localhost.localdomain localhost 。其中 127.0.0.1 是本地环路地址， localhost.localdomain 是主机名(hostname)，也就是你待修改的。localhost 是主机名的别名（alias），它会出现在Konsole的提示符下。将第二项修改为你的主机名，第三项可选。
+	4.重启生效.
+
+三、用户管理（新建分组限制su:http://www.centoscn.com/CentosSecurity/CentosSafe/2013/1013/1799.html）
+	例：
+	1.首先我们创建两个普通的用户tom john,输入密码
+		[root@www ~]# useradd tom
+		[root@www ~]# passwd tom
+		[root@www ~]# useradd john
+		[root@www ~]# passwd john
+		
+	2.[root@www ~]# usermod -g wheel tom 将tom用户加入到wheel组中
+	3.[root@www ~]# vi /etc/pam.d/su 　← 打开这个配置文件找到这句话在第六行将其前面的#注释去掉 #auth required pam_wheel.so use_uid
+	4.执行：[root@www ~]# echo "SU_WHEEL_ONLY yes" >> /etc/login.defs
+	然后你可以分别用tom和john登陆，没有加入到wheel组的用户，执行“su -”命令，即使输入了正确的root密码，也无法登录为root用户。
+
+
+	
+四、1.yum install lrzsz  安装rzsz
+	2.yum -y list java*
+	  yum -y install java-1.8.0-openjdk*
+	安装的java不用配置环境变量
+	
+
 		
 SSH:
  1.查看SSH是否已经安装：rpm -qa |grep ssh 如果出现了openssh-x.x开头的软件名，代表已经安装。如果没有安装，执行： yum install ssh。
@@ -30,48 +67,60 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 	http://www.linuxdown.net/install/config/2016/0611/5853.html
 	
 
-http://blog.csdn.net/xwq2324/article/details/51050233  虚拟机三种网络连接方式
+
+===================================【【命令】】=============================================
+执行jar: java -jar xxx.jar
+0.yum install/remove xx 安装卸载
+1.查看软件是否安装： rpm -qa |grep ssh
+2.查看服务是否开启： systemctl status sshd.service
+3.修改了系统PATH使之生效： ..bashrc
+4.查看ip命令: ip addr
+
+5.su命令和su -命令区别就是：
+	su只是切换了root身份，但Shell环境仍然是普通用户的Shell；而su -连用户和Shell环境一起切换成root身份了。只有切换了Shell环境才不会出现PATH环境变量错误，报command not found的错误。
+	su切换成root用户以后，pwd一下，发现工作目录仍然是普通用户的工作目录；而用su -命令切换以后，工作目录变成root的工作目录了。
+	用echo $PATH命令看一下su和su - 后的环境变量已经变了。
+	
+
+6.查看用户：
+	用户列表文件：/etc/passwd
+	用户组列表文件：/etc/group
+
+	查看系统中有哪些用户：cut -d : -f 1 /etc/passwd
+	查看可以登录系统的用户：cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1
+	查看用户操作：w命令(需要root权限)
+	查看某一用户：w 用户名
+	查看登录用户：who
+	查看用户登录历史记录：last
+
+	groups 查看当前登录用户的组内成员
+	groups gliethttp 查看gliethttp用户所在的组,以及组内成员
+	whoami 查看当前登录用户名
+
+	/etc/group文件包含所有组
+	/etc/shadow和/etc/passwd系统存在的所有用户名
+
 ================================================================================
-查看软件是否安装： rpm -qa |grep ssh
-查看服务是否开启： systemctl status sshd.service
-修改了系统PATH使之生效： ..bashrc
+Centos7 开放端口:
+	Centos升级到7之后，发现无法使用iptables控制Linuxs的端口，google之后发现Centos 7使用firewalld代替了原来的iptables。下面记录如何使用firewalld开放Linux端口：
+	开启端口:firewall-cmd –zone=public –add-port=80/tcp –permanent
+	命令含义：
+		–zone #作用域
+		–add-port=80/tcp #添加端口，格式为：端口/通讯协议
+		–permanent #永久生效，没有此参数重启后失效
+
+	重启防火墙:firewall-cmd –reload
+
+	详细信息可以参考以下资料：
+	http://stackoverflow.com/questions/24729024/centos-7-open-firewall-port
+	https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html
+	http://blog.csdn.net/u010009038/article/details/52880552 开放tomcat端口
 ================================================================================
-http://blog.csdn.net/u010009038/article/details/52880552 开放tomcat端口
-
-Centos7 开放端口 
-Centos升级到7之后，发现无法使用iptables控制Linuxs的端口，google之后发现Centos 7使用firewalld代替了原来的iptables。下面记录如何使用firewalld开放Linux端口：
-
-开启端口
-
-firewall-cmd –zone=public –add-port=80/tcp –permanent
-
-命令含义：
-
-–zone #作用域
-
-–add-port=80/tcp #添加端口，格式为：端口/通讯协议
-
-–permanent #永久生效，没有此参数重启后失效
-
-重启防火墙
-
-firewall-cmd –reload
-
-详细信息可以参考以下资料：
-
-http://stackoverflow.com/questions/24729024/centos-7-open-firewall-port
-
-https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html
-================================================================================
-
-
 相关链接：
-https://linux.cn/article-3631-1.html centos mini ifconfig
-
-http://seisman.info/linux-environment-for-seismology-research.html  用 CentOS 7 打造合适的科研环境
-http://www.open-open.com/lib/view/open1452739029620.html CentOS7 mini配置网络
-
-https://linux.cn/article-5341-1.html 安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情
-http://www.cnblogs.com/c-xiaohai/archive/2017/03.html CentOS7 Linux
-
-http://blog.csdn.net/hunanchenxingyu/article/details/40544513   ssh 公钥认证方式登录
+	http://blog.csdn.net/xwq2324/article/details/51050233  虚拟机三种网络连接方式
+	https://linux.cn/article-3631-1.html centos mini ifconfig
+	http://seisman.info/linux-environment-for-seismology-research.html  用 CentOS 7 打造合适的科研环境
+	https://linux.cn/article-5341-1.html 安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情
+	http://www.cnblogs.com/c-xiaohai/archive/2017/03.html CentOS7 Linux
+	http://blog.csdn.net/hunanchenxingyu/article/details/40544513   ssh 公钥认证方式登录
+	

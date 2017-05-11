@@ -29,7 +29,7 @@
 5.随后增加一个/etc/vsftpd.chroot_list文件. 内容: ftp
 6.修改"/etc/pam.d/vsftpd":
   注释掉一下内容：auth required pam_shells.so
-7.启动vsftpd: service vsftpd start (重启restart)
+7.启动vsftpd: service vsftpd start (重启restart) 【【service 这个命令倒是和CentOS一样的】】
 */
 
 四、克隆虚拟机
