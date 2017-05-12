@@ -24,11 +24,11 @@ CentOS root admin123
 	但是在编辑页面开机自动连接选项不能选择，所以此次方法没有生效。
 	http://www.open-open.com/lib/view/open1452739029620.html CentOS7 mini配置网络，【【这个倒是没写更改ifcfg-xx文件】】
 
-二、修改主机名(http://www.centoscn.com/m/view.php?aid=8068)
+二、修改主机名:
 	1.可以通过hostname 或uname -n 来查看主机名
 	2.通过命令: hostname xxx 临时设置主机名在重启后会失效。
 	3.修改两个文件:
-		/etc/sysconfig/network: HOSTNAME=localhost.localdomain (如果是默认的话），修改 localhost.localdomain 为你的主机名。
+		/etc/hostname 
 		/etc/hosts:打开该文件，会有一行 127.0.0.1 localhost.localdomain localhost 。其中 127.0.0.1 是本地环路地址， localhost.localdomain 是主机名(hostname)，也就是你待修改的。localhost 是主机名的别名（alias），它会出现在Konsole的提示符下。将第二项修改为你的主机名，第三项可选。
 	4.重启生效.
 
