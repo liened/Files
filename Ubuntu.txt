@@ -48,8 +48,7 @@
 2.跟jdk一样，上传到/usr/local文件夹,解压并改名为"hadoop"
 3.跟jdk一样，配置环境变量。vim /etc/profile : export HADOOP_HOME=/usr/local/hadoop  PATH改为：export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:
 4.让配置立刻生效: source /etc/profile
-5.因为hadoop需要jdk支持，所以要在hadoop里面指定要使用的jdk。修改的文件路径：
-  /usr/local/hadoop/etc/hadoop/hadoop-env.sh,修改export JAVA_HOME=/usr/local/jdk
+5.配置jdk：因为hadoop需要jdk支持，所以要在hadoop里面指定要使用的jdk。修改的文件路径： /usr/local/hadoop/etc/hadoop/hadoop-env.sh,修改export JAVA_HOME=/usr/local/jdk
   
 七、hadoop的单词统计
 1.在hadoop文件夹下创建一个input目录.input有一个记录不同单词的txt文件。
@@ -149,8 +148,8 @@
 12.由于此时是将所有的namenode、datanode保存路径设置在了hadoop的目录中，如果为了保险起见，可以自己创建。
   本例中是在/usr/local/hadoop 中创建文件夹: mkdir dfs dfs/name dfs/data
   注意：如果hadoop出现了问题，一定要将这两个文件夹彻底删除掉。
-13.格式化: hdfs namenode -format 。 如果结果出现  Exiting with status 0,表示格式化成功。
-14.启动: /usr/local/hadoop/etc/hadoop 下执行  start-all.sh 
+13.****** 格式化: 【hdfs namenode -format】 。 如果结果出现  Exiting with status 0,表示格式化成功。
+14.****** 启动: /usr/local/hadoop/etc/hadoop 下执行  start-all.sh 
    可以用jps来查看有几个java进程，如果有六个(包含jps)，看看六个的名字，就启动成功。
 
 九、自定义WordCount类

@@ -50,9 +50,9 @@ CentOS root admin123
 四、1.yum install lrzsz  安装rzsz
 	2.yum -y list java*
 	  yum -y install java-1.8.0-openjdk*
-	安装的java不用配置环境变量
-	
-
+	安装的java不用配置环境变量也能用。如果要配置环境变量的话：
+	1). yum默认安装到了/usr/bin/jvm下。
+	2). /etc/alternatives 下会有java的链接，指向默认的jdk
 		
 SSH:
  1.查看SSH是否已经安装：rpm -qa |grep ssh 如果出现了openssh-x.x开头的软件名，代表已经安装。如果没有安装，执行： yum install ssh。
@@ -71,7 +71,7 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 ===================================【【命令】】=============================================
 执行jar: java -jar xxx.jar
 0.yum install/remove xx 安装卸载
-1.查看软件是否安装： rpm -qa |grep ssh
+1.查看软件是否安装： rpm -qa |grep ssh 或者 【yum list installed |grep java】
 2.查看服务是否开启： systemctl status sshd.service
 3.修改了系统PATH使之生效： ..bashrc
 4.查看ip命令: ip addr
@@ -80,7 +80,6 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 	su只是切换了root身份，但Shell环境仍然是普通用户的Shell；而su -连用户和Shell环境一起切换成root身份了。只有切换了Shell环境才不会出现PATH环境变量错误，报command not found的错误。
 	su切换成root用户以后，pwd一下，发现工作目录仍然是普通用户的工作目录；而用su -命令切换以后，工作目录变成root的工作目录了。
 	用echo $PATH命令看一下su和su - 后的环境变量已经变了。
-	
 
 6.查看用户：
 	用户列表文件：/etc/passwd
@@ -99,6 +98,8 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 
 	/etc/group文件包含所有组
 	/etc/shadow和/etc/passwd系统存在的所有用户名
+7.查看环境变量:export(查看单独的PATH变量:export $PATH)
+8.查看系统是不是64位：uname -a 解释：如果有x86_64就是64位的，没有就是32位的。后面是X686或X86_64则内核是64位的，i686或i386则内核是32位的
 
 ================================================================================
 Centos7 开放端口:
