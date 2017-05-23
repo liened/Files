@@ -1,0 +1,70 @@
+一、热部署的两种方式：spring-boot-devtools 和 springloaded
+	【总结：spring-boot-devtools 是热启动,springloaded是热部署】
+	1).devtools:
+        <!-- 
+            devtools可以实现页面热部署（即页面修改后会立即生效，这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现），
+            实现类文件热部署（类文件修改后不会立即生效），实现对属性文件的热部署。
+            即devtools会监听classpath下的文件变动，并且会立即重启应用（发生在保存时机），注意：因为其采用的虚拟机机制，该项重启是很快的
+         -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>	<!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入【可能默认是true吧，不写的话也可以】 -->
+        </dependency>
+		
+		在plugin里面加上fork项:
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<configuration>
+				<fork>true</fork><!-- 资料上说如果没有该项配置，devtools不会起作用，即应用不会restart. 【但是实测不加这个也可以】 -->
+			</configuration>
+		</plugin>
+		
+	2).spring loaded:
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<dependencies>
+						<dependency>
+							<groupId>org.springframework</groupId>
+							<artifactId>springloaded</artifactId>
+							<version>1.2.6.RELEASE</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</build>
+				
+	注意：
+		1).启动项目用: mvn spring-boot:run
+		2).打开编码工具的自动编译(Idea在Compiler里)
+	
+https://zhuanlan.zhihu.com/p/24965387 Filter Property
+1.Filter:
+ SpringBoot自动添加了OrderedCharacterEncodingFilter和HiddenHttpMethodFilter
+  自定义filter：
+	1).实现Filter(javax.servlet.Filter)接口，实现 doFilter 方法
+	2).添加@Configuration 注解，将自定义Filter加入过滤链
+2.Property:
+	1).配置在application.properties中
+	2).自定义配置类:
+		@Component
+		public class MyProperties{
+			@Value("${my.title}")
+			private String title;
+			@Value("${my.name}")
+			private String name;
+			//setter and getter
+		}
+3.了解spring data jpa 和thymeleaf模板
+	<!-- thymeleaf -->
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+4.了解Gradle和WebJars
+
+https://zhuanlan.zhihu.com/p/24977566 spring boot redis
