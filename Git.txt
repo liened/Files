@@ -45,7 +45,9 @@
 		1). git add Git.txt
 		2).git commit -m 提交即可。
 　　git commit --amend 修改刚刚commit的注释,在vi打开的文件里面修改即可，然后重新push。 
-　　git config --list 查看配置
+	
+	git git config core.ignorecase false  文件名区分大小写
+	git config --list 查看配置
 　　git config --global user.name "xxx"
 　　git config --global user.email "xx@xx"
 	git reset --hard commit_id  回退commit
