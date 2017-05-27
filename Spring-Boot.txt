@@ -39,8 +39,10 @@
 		</build>
 				
 	注意：
-		1).启动项目用: mvn spring-boot:run
+		1).启动项目用: mvn spring-boot:run 【【【重点，如果不是这样的话，ctrl+F9 手动刷新】】】
 		2).打开编码工具的自动编译(Idea在Compiler里)
+
+	
 	
 https://zhuanlan.zhihu.com/p/24965387 Filter Property
 1.Filter:
