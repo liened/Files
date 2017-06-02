@@ -6,9 +6,11 @@ https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS cors
 response.setHeader("Access-Control-Allow-Origin","*");//解决跨域问题
 response.setHeader("Access-Control-Allow-Credentials","true"); //解决cookie问题
 
+http://www.jianshu.com/p/34730e595a8c 多数据源
 
-http://www.cnblogs.com/HondaHsu/p/3641116.html
-http://git.oschina.net/progit/index.html
+
+http://www.cnblogs.com/HondaHsu/p/3641116.html  MySQL与Oracle 差异比较之一数据类型
+http://git.oschina.net/progit/index.html  git介绍
 
 
 

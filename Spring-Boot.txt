@@ -69,6 +69,8 @@ https://zhuanlan.zhihu.com/p/24965387 Filter Property
     </dependency>
 4.了解Gradle和WebJars
 
-https://zhuanlan.zhihu.com/p/24977566 spring boot redis (三)
-https://zhuanlan.zhihu.com/p/24988845 thymeleaf  (四)
-https://zhuanlan.zhihu.com/p/25000309 spring-data-jpa (五)
+5. https://zhuanlan.zhihu.com/p/24977566 spring boot redis (三)
+6. https://zhuanlan.zhihu.com/p/24988845 thymeleaf  (四)
+7. https://zhuanlan.zhihu.com/p/25000309 spring-data-jpa (五)
+	@Entity对象与数据库关联  @Transient 不关联
+	http://www.jianshu.com/p/34730e595a8c 多数据源
