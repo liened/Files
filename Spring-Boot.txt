@@ -69,4 +69,6 @@ https://zhuanlan.zhihu.com/p/24965387 Filter Property
     </dependency>
 4.了解Gradle和WebJars
 
-https://zhuanlan.zhihu.com/p/24977566 spring boot redis
+https://zhuanlan.zhihu.com/p/24977566 spring boot redis (三)
+https://zhuanlan.zhihu.com/p/24988845 thymeleaf  (四)
+https://zhuanlan.zhihu.com/p/25000309 spring-data-jpa (五)
