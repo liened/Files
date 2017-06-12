@@ -1,5 +1,5 @@
 	<!-- 查询历史申请记录的返回结果 -->
-	<resultMap type="cn.rongcapital.operation.asset.personalapply.LoanApplyHistory" id="loanHisMap">
+	<resultMap type="LoanHis" id="loanHisMap">
 		<id property="loanId" column="LOAN_ID"/>
 		<id property="applyDate" column="APPLY_DATE"/>
 		<id property="productName" column="PRODUCT_NAME"/>
@@ -41,12 +41,21 @@
 			t3.OBJECT_NAME,
 			t3.RELATION_TYPE,
 			t3.MOBILE_PHONE
-		FROM TB_BIZ_LOAN_APPLY t1
-		LEFT JOIN TB_CSM_INDIVIDUAL t2 ON t1.CUST_NUM = t2.CUST_NUM
-		LEFT JOIN TB_CSM_IND_RELATIONS t3 ON t2.CUST_NUM = t3.CUST_NUM
+		FROM TB_LOAN t1
+		LEFT JOIN TB_CSM_IND t2 ON t1.CUST_NUM = t2.CUST_NUM
+		LEFT JOIN TB_CSM_REL t3 ON t2.CUST_NUM = t3.CUST_NUM
 		WHERE t1.LOAN_NUM &lt;&gt; #{loanNum}
 		  AND t1.LOAN_STATUS IN ('04','05','06')
 		  AND t2.CUST_NUM in (
-			SELECT CUST_NUM from TB_CSM_INDIVIDUAL t4 WHERE t4.CERTIFICATE_NUM = #{certificateNum}
+			SELECT CUST_NUM from TB_CSM_IND t4 WHERE t4.CERTIFICATE_NUM = #{certificateNum}
 		) ORDER BY t1.APPLY_DATE DESC
 	</select>
+	
+	
+---数组：
+<delete id="deleteLoan">
+	delete from t_loan where loan_id IN
+	<foreach collection="array" item="id" open="(" close=")" separator=",">
+		#{id}
+	</foreach>
+</delete>
