@@ -74,3 +74,12 @@ https://zhuanlan.zhihu.com/p/24965387 Filter Property
 7. https://zhuanlan.zhihu.com/p/25000309 spring-data-jpa (五)
 	@Entity对象与数据库关联  @Transient 不关联
 	http://www.jianshu.com/p/34730e595a8c 多数据源
+8. https://zhuanlan.zhihu.com/p/25010714 mybatis
+	1.springboot启动时会自动加载spring.datasource.*的相关配置，数据源就会自动注入到sqlSessionFactory中,sqlSessionFactory会自动注入到Mapper中
+	2.在系统类上添加注释: @MapperScan("com.demo.mapper")(推荐),或者直接在Mapper类上添加注解@Mapper。
+	3.注解接口版: 开发Mapper类接口：@Select @Results @Result @Update @Delete @Insert
+	4.xml版: 
+		1).application.properties中添加配置指定mybatis基础配置文件和实体类隐射文件地址: 
+			mybatis.config-locations=classpath:mybatis/mybatis-config.xml
+			mybatis.mpper-locations=classpath:mybatis/mapper/*.xml
+			

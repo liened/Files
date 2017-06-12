@@ -1,0 +1,1 @@
+1.Mybatis批量更新: *.properties文件的url里加上allowMultiQueries=true
