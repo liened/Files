@@ -82,4 +82,4 @@ https://zhuanlan.zhihu.com/p/24965387 Filter Property
 		1).application.properties中添加配置指定mybatis基础配置文件和实体类隐射文件地址: 
 			mybatis.config-locations=classpath:mybatis/mybatis-config.xml
 			mybatis.mpper-locations=classpath:mybatis/mapper/*.xml
-	5.spring-boot mybatis分页插件  https://github.com/abel533/MyBatis-Spring-Boot
+	5.spring-boot mybatis分页插件  https://github.com/abel533/MyBatis-Spring-Boot (未用)

@@ -1,3 +1,6 @@
+1. http://blog.csdn.net/hupanfeng/article/details/9247379  Mybatis 插件原理
+
+2.一对多，多对一
 	<!-- 查询历史申请记录的返回结果 -->
 	<resultMap type="LoanHis" id="loanHisMap">
 		<id property="loanId" column="LOAN_ID"/>
