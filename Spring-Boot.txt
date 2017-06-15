@@ -40,16 +40,19 @@
 				
 	注意：
 		1).启动项目用: mvn spring-boot:run 【【【重点，如果不是这样的话，ctrl+F9 手动刷新】】】
-		2).打开编码工具的自动编译(Idea在Compiler里)
+		2).打开编码工具的自动编译(Idea在Compiler里) 【【重点，不小心就忘记了】】
 
 	
 	
 https://zhuanlan.zhihu.com/p/24965387 Filter Property
+
 1.Filter:
  SpringBoot自动添加了OrderedCharacterEncodingFilter和HiddenHttpMethodFilter
   自定义filter：
 	1).实现Filter(javax.servlet.Filter)接口，实现 doFilter 方法
 	2).添加@Configuration 注解，将自定义Filter加入过滤链
+ Interceptor:	http://blog.sina.com.cn/s/blog_c90ce4e0010328r9.html 拦截器
+ 
 2.Property:
 	1).配置在application.properties中
 	2).自定义配置类:
@@ -61,6 +64,11 @@ https://zhuanlan.zhihu.com/p/24965387 Filter Property
 			private String name;
 			//setter and getter
 		}
+		使用时：
+		@AutoWired
+		MyProperties pro;
+		
+		
 3.了解spring data jpa 和thymeleaf模板
 	<!-- thymeleaf -->
     <dependency>
@@ -83,3 +91,12 @@ https://zhuanlan.zhihu.com/p/24965387 Filter Property
 			mybatis.config-locations=classpath:mybatis/mybatis-config.xml
 			mybatis.mpper-locations=classpath:mybatis/mapper/*.xml
 	5.spring-boot mybatis分页插件  https://github.com/abel533/MyBatis-Spring-Boot (未用)
+	6. show sql:
+		<settings>
+			<setting name="logImpl" value="STDOUT_LOGGING"/>
+		</settings>
+	
+	
+	
+http://www.cnblogs.com/AloneSword/p/4790071.html
+http://blog.csdn.net/lk10207160511/article/details/51235527
