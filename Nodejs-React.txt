@@ -1,3 +1,5 @@
+http://www.jianshu.com/p/42e11515c10f  Webpack 【【经典】】
+
 http://www.tuicool.com/articles/UJNb2eJ  windows 上优雅的安装 node 和 npm
 
 npm config set prefix "E:\NODE\npm-global" # npm install -g xxx 的包都会装到这个目录
