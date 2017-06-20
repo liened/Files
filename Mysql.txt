@@ -56,3 +56,14 @@ Integer.toHexString(200);
  
 // 十六进制转化为十进制，结果140。
 Integer.parseInt("8C",16);
+
+
+【【【行转列】】】：
+(
+		SELECT
+			group_concat(t.label)
+		FROM
+			sys_dict t
+		WHERE
+			t.type = t1.DICT_TYPE
+	)
