@@ -57,8 +57,7 @@ Integer.toHexString(200);
 // 十六进制转化为十进制，结果140。
 Integer.parseInt("8C",16);
 
-
-【【【行转列】】】：
+一、【【【行转列】】】：
 (
 		SELECT
 			group_concat(t.label)
@@ -67,3 +66,4 @@ Integer.parseInt("8C",16);
 		WHERE
 			t.type = t1.DICT_TYPE
 	)
+二、DATE_ADD(CHECK_START_DATE, INTERVAL #{item.limitTime} MINUTE) 分钟相加
