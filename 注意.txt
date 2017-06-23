@@ -1,3 +1,8 @@
+1.String占位符替换:
+	String a = "您的账号{0}还剩{1}元";
+    String b = MessageFormat.format(a,"131","20");
+    System.out.println(b);
+		
 6.【强制】Object的equals方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals。
 	Object object =  null;
 	正例： "test".equals(object);//false
