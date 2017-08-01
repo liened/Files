@@ -20,3 +20,10 @@
 3.springMVC上传文件: @RequestParam("files") MultipartFile files[]【数组】
 4.注意日志用占位符: logger.info("请求路径:{}",url);
 5.String json = IOUtils.toString(req.getInputStream(),"utf-8"); 【IOUtils】
+6.StringUtils:
+	list转成分隔符字符串:
+	List<String> channels= UserUtils.getManagerChannels();
+    String orgCd = tbAmsBizAssetInfo.getOrgCd();
+    if (StringUtils.isBlank(orgCd)){
+        orgCd = StringUtils.join(channels,"','");
+	}
