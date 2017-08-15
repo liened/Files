@@ -2,21 +2,21 @@
 
 2.一对多，多对一
 	<!-- 查询历史申请记录的返回结果 -->
-	<resultMap type="LoanHis" id="loanHisMap">
+	<resultMap id="loanHisMap" type="com.xx.LoanHis">
 		<id property="loanId" column="LOAN_ID"/>
 		<id property="applyDate" column="APPLY_DATE"/>
 		<id property="productName" column="PRODUCT_NAME"/>
 		<id property="productLimit" column="PRODUCT_LIMIT"/>
 		<id property="term" column="TERM"/>
 		<id property="finalCheckResult" column="FINAL_CHECK_RESULT"/>
-		<association property="individual" javaType="Individual">
+		<association property="individual" javaType="Individual">                <!-- 一对一 -->
 			<id property="custId" column="CUST_ID"/>
 			<result property="certificateNum" column="CERTIFICATE_NUM"/>
 			<result property="workCorpName" column="WORK_CORP_NAME"/>
 			<result property="homeDetailAddress" column="HOME_DETAIL_ADDRESS"/>
 			<result property="custName" column="CUST_NAME"/>
 		</association>
-		<collection property="relations" ofType="IndRelation">
+		<collection property="relations" ofType="IndRelation">                  <!-- 一对多 -->
 			<id property="relationId" column="RELATION_ID"/>
 			<result property="custNum" column="CUST_NUM"/>
 			<result property="objectName" column="OBJECT_NAME"/>
