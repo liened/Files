@@ -4,11 +4,11 @@
 	<!-- 查询历史申请记录的返回结果 -->
 	<resultMap id="loanHisMap" type="com.xx.LoanHis">
 		<id property="loanId" column="LOAN_ID"/>
-		<id property="applyDate" column="APPLY_DATE"/>
-		<id property="productName" column="PRODUCT_NAME"/>
-		<id property="productLimit" column="PRODUCT_LIMIT"/>
-		<id property="term" column="TERM"/>
-		<id property="finalCheckResult" column="FINAL_CHECK_RESULT"/>
+		<result property="applyDate" column="APPLY_DATE"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="productLimit" column="PRODUCT_LIMIT"/>
+		<result property="term" column="TERM"/>
+		<result property="finalCheckResult" column="FINAL_CHECK_RESULT"/>
 		<association property="individual" javaType="Individual">                <!-- 一对一 -->
 			<id property="custId" column="CUST_ID"/>
 			<result property="certificateNum" column="CERTIFICATE_NUM"/>
