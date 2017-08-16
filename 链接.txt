@@ -31,3 +31,4 @@ http://www.importnew.com/21889.html 【Java并发编程：CountDownLatch、Cycli
 http://www.importnew.com/15731.html 【CountDownLatch、CyclicBarrier不同】
 
 http://blog.csdn.net/sadfishsc/article/details/47160213 【springmvc logback】
+http://blog.csdn.net/ufo2910628/article/details/40399539【springmvc exception处理】
