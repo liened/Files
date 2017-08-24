@@ -100,7 +100,7 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 	/etc/shadow和/etc/passwd系统存在的所有用户名
 7.查看环境变量:export(查看单独的PATH变量:export $PATH)
 8.查看系统是不是64位：uname -a 解释：如果有x86_64就是64位的，没有就是32位的。后面是X686或X86_64则内核是64位的，i686或i386则内核是32位的
-
+9.查看端口: netstat (如果netstat命令找不到的话yum install net-tools),例如: netstat -lnp|grep 8761 (详解见链接 http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html)
 ================================================================================
 Centos7 开放端口:
 	Centos升级到7之后，发现无法使用iptables控制Linuxs的端口，google之后发现Centos 7使用firewalld代替了原来的iptables。下面记录如何使用firewalld开放Linux端口：
