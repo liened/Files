@@ -101,6 +101,7 @@ https://zhuanlan.zhihu.com/p/24965387 Filter Property
 mvn clean package -Dmaven.test.skip=true 跳过测试将项目打包
 http://blog.csdn.net/catoop/article/details/50588851 spring-boot的部署
 
-	
 http://www.cnblogs.com/AloneSword/p/4790071.html
 http://blog.csdn.net/lk10207160511/article/details/51235527
+
+http://blog.csdn.net/lc0817/article/details/54375802 【Eureka常见问题，如：自我保护模式，配置信息等】 EMERGENCY! EUREKA MA...
