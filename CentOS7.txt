@@ -53,7 +53,33 @@ CentOS root admin123
 	安装的java不用配置环境变量也能用。如果要配置环境变量的话：
 	1). yum默认安装到了/usr/bin/jvm下。
 	2). /etc/alternatives 下会有java的链接，指向默认的jdk
-		
+五、防火墙 http://blog.csdn.net/u011846257/article/details/54707864
+	1.启动防火墙 systemctl start firewalld 
+	2.禁用防火墙 systemctl stop firewalld
+	3.设置开机启动 systemctl enable firewalld
+	4.停止并禁用开机启动 sytemctl disable firewalld
+	5.重启防火墙 firewall-cmd --reload
+	6.查看状态 systemctl status firewalld或者 firewall-cmd --state
+	7.查看版本 firewall-cmd --version
+	8.查看帮助 firewall-cmd --help
+	9.查看区域信息 firewall-cmd --get-active-zones
+	10.查看指定接口所属区域信息 firewall-cmd --get-zone-of-interface=eth0
+	11.拒绝所有包 firewall-cmd --panic-on
+	12.取消拒绝状态 firewall-cmd --panic-off
+	13.查看是否拒绝 firewall-cmd --query-panic
+	14.将接口添加到区域(默认接口都在public)  firewall-cmd --zone=public --add-interface=eth0(永久生效再加上 --permanent 然后reload防火墙)
+	15.设置默认接口区域 firewall-cmd --set-default-zone=public(立即生效，无需重启)
+	16.更新防火墙规则 firewall-cmd --reload或firewall-cmd --complete-reload(两者的区别就是第一个无需断开连接，就是firewalld特性之一动态添加规则，第二个需要断开连接，类似重启服务)
+	17.查看指定区域所有打开的端口 firewall-cmd --zone=public --list-ports
+	18.在指定区域打开端口（记得重启防火墙）firewall-cmd --zone=public --add-port=80/tcp(永久生效再加上 --permanent)
+	说明：
+	–zone 作用域
+	–add-port=8080/tcp 添加端口，格式为：端口/通讯协议
+	–permanent #永久生效，没有此参数重启后失效
+	添加端口例子见下面： Centos7 开放端口
+	参考文章：
+	http://havee.me/Linux/2015-01/using-firewalls-on-centos-7.html
+
 SSH:
  1.查看SSH是否已经安装：rpm -qa |grep ssh 如果出现了openssh-x.x开头的软件名，代表已经安装。如果没有安装，执行： yum install ssh。
  2.如果已经安装，查看是否启动: systemctl status sshd.service 出现active(running)关键字代表已经启动。如果没启动： service sshd start。
@@ -66,13 +92,16 @@ SSH:
 Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 	http://www.linuxdown.net/install/config/2016/0611/5853.html
 	
-
+防火墙: http://blog.csdn.net/u011846257/article/details/54707864
 
 ===================================【【命令】】=============================================
 执行jar: java -jar xxx.jar
 0.yum install/remove xx 安装卸载
 1.查看软件是否安装： rpm -qa |grep ssh 或者 【yum list installed |grep java】
-2.查看服务是否开启： systemctl status sshd.service
+2.systemctl: 
+	(1).systemctl start/stop firewalld.service 关闭/开启防火墙，关闭/开启服务的命令
+	(2).查看服务是否开启 systemctl status sshd.service
+	
 3.修改了系统PATH使之生效： ..bashrc
 4.查看ip命令: ip addr
 
@@ -101,10 +130,11 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 7.查看环境变量:export(查看单独的PATH变量:export $PATH)
 8.查看系统是不是64位：uname -a 解释：如果有x86_64就是64位的，没有就是32位的。后面是X686或X86_64则内核是64位的，i686或i386则内核是32位的
 9.查看端口: netstat (如果netstat命令找不到的话yum install net-tools),例如: netstat -lnp|grep 8761 (详解见链接 http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html)
+10.防火墙相关命令: firewall-cmd 
 ================================================================================
 Centos7 开放端口:
 	Centos升级到7之后，发现无法使用iptables控制Linuxs的端口，google之后发现Centos 7使用firewalld代替了原来的iptables。下面记录如何使用firewalld开放Linux端口：
-	开启端口:firewall-cmd –zone=public –add-port=80/tcp –permanent
+	开启端口:firewall-cmd --zone=public -–add-port=80/tcp –-permanent
 	命令含义：
 		–zone #作用域
 		–add-port=80/tcp #添加端口，格式为：端口/通讯协议
@@ -113,6 +143,7 @@ Centos7 开放端口:
 	重启防火墙:firewall-cmd –reload
 
 	详细信息可以参考以下资料：
+	http://blog.csdn.net/u011846257/article/details/54707864 防火墙及开发端口
 	http://stackoverflow.com/questions/24729024/centos-7-open-firewall-port
 	https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html
 	http://blog.csdn.net/u010009038/article/details/52880552 开放tomcat端口
