@@ -46,14 +46,15 @@ CentOS root admin123
 	然后你可以分别用tom和john登陆，没有加入到wheel组的用户，执行“su -”命令，即使输入了正确的root密码，也无法登录为root用户。
 
 
-	
 四、1.yum install lrzsz  安装rzsz
 	2.yum -y list java*
 	  yum -y install java-1.8.0-openjdk*
 	安装的java不用配置环境变量也能用。如果要配置环境变量的话：
 	1). yum默认安装到了/usr/bin/jvm下。
 	2). /etc/alternatives 下会有java的链接，指向默认的jdk
+	
 五、防火墙 http://blog.csdn.net/u011846257/article/details/54707864
+	【注: 防火墙相关命令都是: firewall-cmd 】
 	1.启动防火墙 systemctl start firewalld 
 	2.禁用防火墙 systemctl stop firewalld
 	3.设置开机启动 systemctl enable firewalld
