@@ -54,6 +54,7 @@ CentOS root admin123
 	2). /etc/alternatives 下会有java的链接，指向默认的jdk
 	
 五、防火墙 http://blog.csdn.net/u011846257/article/details/54707864
+			https://www.zhaokeli.com/Article/6321.html  【centos 防火墙】
 	【注: 防火墙相关命令都是: firewall-cmd 】
 	1.启动防火墙 systemctl start firewalld 
 	2.禁用防火墙 systemctl stop firewalld
@@ -75,7 +76,7 @@ CentOS root admin123
 	18.在指定区域打开端口（记得重启防火墙）firewall-cmd --zone=public --add-port=80/tcp(永久生效再加上 --permanent)
 	说明：
 	–zone 作用域
-	–add-port=8080/tcp 添加端口，格式为：端口/通讯协议
+	–add-port=8080/tcp 添加端口，格式为：端口/通讯协议  --remove-port是移除开发的端口
 	–permanent #永久生效，没有此参数重启后失效
 	添加端口例子见下面： Centos7 开放端口
 	参考文章：
@@ -102,7 +103,14 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 2.systemctl: 
 	(1).systemctl start/stop firewalld.service 关闭/开启防火墙，关闭/开启服务的命令
 	(2).查看服务是否开启 systemctl status sshd.service
-	
+		启动一个服务：systemctl start firewalld.service
+		关闭一个服务：systemctl stop firewalld.service
+		重启一个服务：systemctl restart firewalld.service
+		显示一个服务的状态：systemctl status firewalld.service
+		在开机时启用一个服务：systemctl enable firewalld.service
+		在开机时禁用一个服务：systemctl disable firewalld.service
+		查看服务是否开机启动：systemctl is-enabled firewalld.service;echo $?
+		查看已启动的服务列表：systemctl list-unit-files|grep enabled
 3.修改了系统PATH使之生效： ..bashrc
 4.查看ip命令: ip addr
 
@@ -132,13 +140,14 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 8.查看系统是不是64位：uname -a 解释：如果有x86_64就是64位的，没有就是32位的。后面是X686或X86_64则内核是64位的，i686或i386则内核是32位的
 9.查看端口: netstat (如果netstat命令找不到的话yum install net-tools),例如: netstat -lnp|grep 8761 (详解见链接 http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html)
 10.防火墙相关命令: firewall-cmd 
+11.查询系统版本: cat /etc/redhat-release
 ================================================================================
 Centos7 开放端口:
 	Centos升级到7之后，发现无法使用iptables控制Linuxs的端口，google之后发现Centos 7使用firewalld代替了原来的iptables。下面记录如何使用firewalld开放Linux端口：
 	开启端口:firewall-cmd --zone=public -–add-port=80/tcp –-permanent
 	命令含义：
 		–zone #作用域
-		–add-port=80/tcp #添加端口，格式为：端口/通讯协议
+		–add-port=80/tcp #添加端口，格式为：端口/通讯协议  --remove-port是移除开发的端口
 		–permanent #永久生效，没有此参数重启后失效
 
 	重启防火墙:firewall-cmd –reload
@@ -156,4 +165,11 @@ Centos7 开放端口:
 	https://linux.cn/article-5341-1.html 安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情
 	http://www.cnblogs.com/c-xiaohai/archive/2017/03.html CentOS7 Linux
 	http://blog.csdn.net/hunanchenxingyu/article/details/40544513   ssh 公钥认证方式登录
+	
+==================================================================================
+安装telnet:
+1.在线安装
+分别执行如下两个命令：
+	yum install telnet
+	yum install telnet-server
 	
