@@ -1,0 +1,19 @@
+http://blog.csdn.net/baidu_21578557/article/details/53884178?utm_source=gold_browser_extension
+
+1、准备工作
+选首先安装这几个软件：GCC，PCRE（Perl Compatible Regular Expression），zlib，OpenSSL。
+Nginx是C写的，需要用GCC编译；Nginx的Rewrite和HTTP模块会用到PCRE；Nginx中的Gzip用到zlib；
+用命令“# gcc”，查看gcc是否安装；如果出现“gcc: no input files”信息，说明已经安装好了。
+否则，就需要用命令“# yum install gcc”，进行安装了！一路可能需要多次输入y，进行确认。
+安装好后，可以再用命令“#gcc”测试，或者用命令“# gcc -v”查看其版本号。
+同样方法，用如下命令安装PCRE，zlib，OpenSSL（其中devel，是develop开发包的意思）：
+[plain] view plain copy  在CODE上查看代码片派生到我的代码片
+# yum install -y pcre pcre-devel  
+# yum install -y zlib zlib-devel  
+# yum install -y openssl openssl-devel  
+
+yum install gcc-c++ 【不确定】
+
+2. #./nginx -h  查看帮助
+启动：./nginx
+停止：./nginx -s stop
