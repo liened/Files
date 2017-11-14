@@ -28,3 +28,5 @@
 		-XX:+UseSerialGC
 		-XX:PretenureSizeThreshold=3145728
 5.-XX:+PrintGCDetails 收集器日志参数，发生垃圾收集是打印内存回收日志，并在进程退出的时候输出当前的内存各区域分配情况。
+  -XX:PrintTenuringDistribution 打印分代描述
+6.-XX:+PrintAssembly 输出反汇编
