@@ -68,3 +68,6 @@ Integer.parseInt("8C",16);
 	)
 二、DATE_ADD(CHECK_START_DATE, INTERVAL #{item.limitTime} MINUTE) 分钟相加
 三、show full columns from TB_XXX;  查询列信息和comment
+
+
+http://blog.csdn.net/liuzhoulong/article/details/51729168
