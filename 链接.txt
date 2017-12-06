@@ -36,3 +36,7 @@ http://blog.csdn.net/ufo2910628/article/details/40399539【springmvc exception�
 
 
 http://blog.csdn.net/lonely_fireworks/article/details/7962171/ 【String.format()】
+
+
+http://blog.csdn.net/forezp/article/details/70198541 【python分词云图】
+http://blog.csdn.net/forezp/article/details/70148833 【spring cloud要点汇总】
