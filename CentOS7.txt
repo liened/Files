@@ -165,7 +165,7 @@ Centos7 开放端口:
 	https://linux.cn/article-5341-1.html 安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情
 	http://www.cnblogs.com/c-xiaohai/archive/2017/03.html CentOS7 Linux
 	http://blog.csdn.net/hunanchenxingyu/article/details/40544513   ssh 公钥认证方式登录
-	
+	http://cgs1999.iteye.com/blog/2043008 【安装epel及rpm相关命令】
 ==================================================================================
 安装telnet:
 1.在线安装

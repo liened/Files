@@ -1,4 +1,4 @@
-安装指导地址：
+Windows ----------------------------------------------
 	https://www.cnblogs.com/5ishare/p/6716142.html 【较为详细】
 	http://blog.csdn.net/lu1005287365/article/details/52315786 【下载地址比较好用】
 	
@@ -7,6 +7,18 @@
 		输入命令：rabbitmq-plugins.bat enable rabbitmq_management 安装好插件
 
 2.重启服务器: net stop RabbitMQ && net start RabbitMQ
+
+
+Linux ------------------------------------------------
+	http://cgs1999.iteye.com/blog/2043008 【安装epel及rpm相关命令】
+	https://www.cnblogs.com/hujiapeng/p/7352904.html   【安装指导 Linux】
+	https://www.cnblogs.com/uptothesky/p/6094357.html 【版本老一点，但是包含开放端口的命令】
+	http://www.rabbitmq.com/install-rpm.html 【官方】
+	最终安装的erlang还是安装的官方的Install zero-dependency Erlang from RabbitMQ
+
+
+
+
 
 3.用户及权限管理
 	使用rabbitmqctl控制台命令来创建用户，密码，绑定权限等。
@@ -50,3 +62,7 @@
 		rabbitmqctl  list_user_permissions  User
 	(4)  清除用户的权限信息
 		rabbitmqctl  clear_permissions  [-p VHostPath]  User
+		
+		
+		
+		

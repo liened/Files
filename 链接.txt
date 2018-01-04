@@ -42,5 +42,8 @@ http://blog.csdn.net/forezp/article/details/70198541 【python分词云图】
 http://blog.csdn.net/forezp/article/details/70148833 【spring cloud要点汇总】
 
 
-https://www.xiaohuai.com/3810 【centos 登录后显示欢迎信息】
-https://www.xiaohuai.com/3806 【centos 登录后显示系统信息】
+https://www.xiaohuai.com/3810 【centos 登录后显示欢迎信息 /etc/motd】
+https://www.xiaohuai.com/3806 【centos 登录后显示系统信息 /root/.bash_profile】
+http://blog.csdn.net/jcxch/article/details/50494087 【centos 登录后显示欢迎信息 /etc/issue】
+
+http://cgs1999.iteye.com/blog/2043008 【安装epel及rpm相关命令】
