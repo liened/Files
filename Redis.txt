@@ -7,3 +7,21 @@ linux环境安装redis:
 		异常：make: cc: Command not found make: *** [adlist.o] Error 127。这是因为没有安装gcc，执行命令安装: yum  install  gcc
 			  fatal error: jemalloc/jemalloc.h: No such file or directory  解决办法: make MALLOC=libc (http://www.phperz.com/article/14/1219/42002.html)
 	4).cd utils目录下执行: install_server.sh
+	
+	
+2.集群
+ 1) yum install ruby
+ 2) yum install rubygems
+ 3) gem install reids (安装redis和ruby的接口)
+ 4) 安装完后启动: /usr/local/redis/bin/redis-server  /usr/local/redis-cluster/700*/reids.conf  分别启动
+ 5) netstat tumpl | grep redis 查看已启动的redis
+    或者用： ps -ef | grep  redis 【这个还熟悉点】
+ 6) ./redis-4.0.1/src/redis-trib.rb create --replicas 1 192.168.219.129:7001 192.168.219.129:7002 192.168.219.129:7003 192.168.219.129:7004 192.168.219.129:7005 192.168.219.129:7006  创建集群
+   说明：--replicas参数指定集群中每个主节点配备几个从节点，这里设置为1。
+　　　这里因为测试，只用了3台机器，如果部署节点使用不同的IP地址，redis-trib-rb会尽可能保证主从节点不分配在同一台机器下，
+　　　因此会重新排序节点表顺序。节点列表顺序用于确定主从角色，先主节点之后是从节点。
+　　　创建过程中首先会给出主从节点角色分配的计划，如下图：
+ 7) redis-cli -c -h 192.168.31.245 -p 7002,加参数 -C 可连接到集群7002端口，因为上面 redis.conf 将 bind 改为了ip地址，所以 -h 参数不可以省略。
+ 
+http://www.cnblogs.com/ding2016/p/7892542.html 【redis 4.0.1集群 安装Ruby2.2.3】
+https://www.cnblogs.com/ding2016/p/7903147.html  【centos7/rhel7安装较高版本ruby2.2/2.3/2.4+】

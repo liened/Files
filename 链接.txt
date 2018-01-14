@@ -47,3 +47,6 @@ https://www.xiaohuai.com/3806 【centos 登录后显示系统信息 /root/.bash_
 http://blog.csdn.net/jcxch/article/details/50494087 【centos 登录后显示欢迎信息 /etc/issue】
 
 http://cgs1999.iteye.com/blog/2043008 【安装epel及rpm相关命令】
+
+
+http://www.cnblogs.com/ding2016/p/7892542.html 【redis 4.0.1集群 安装Ruby2.2.3】
