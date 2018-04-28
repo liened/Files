@@ -68,3 +68,7 @@
     1.找到TortoiseGit -> Settings -> Network
     2.将SSH client指向git\bin\ssh.exe(Git安装路径下,我的路径是 Git\usr\bin\ssh.exe)
   然后便可正确push和pull
+  
+  
+  
+  https://www.2cto.com/kf/201609/547838.html  在IDEA中实战Git

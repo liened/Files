@@ -46,4 +46,7 @@
 		
 		http://www.jianshu.com/p/fb7bddca7b1e(IntellijIDEA 无法创建Maven工程，导入已有工程无法识别pom文件)
 
-
+	Intellj Idea设置取消显示形参名提示:  settings > Editor > General > Appearance 配置页，将 Show parameter name hints 项的勾选去掉。
+	方法分割线也在这里设置： settings > Editor > General > Appearance 配置页，将 Show method separators 项勾选。
+	
+	https://www.2cto.com/kf/201609/547838.html  在IDEA中实战Git
