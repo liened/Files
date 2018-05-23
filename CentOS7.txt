@@ -96,6 +96,10 @@ Linux系统下如何配置SSH_Centos7 ssh连接配置 CentOS7下安全配置:
 	
 防火墙: http://blog.csdn.net/u011846257/article/details/54707864
 
+六、设置欢迎登录信息
+   登陆信息显示数据 :  /etc/issue (无论登录成功与否都会显示)
+   登陆信息显示数据 :  /etc/motd（只有登录成功了才能显示）
+
 ===================================【【命令】】=============================================
 执行jar: java -jar xxx.jar
 0.yum install/remove xx 安装卸载
