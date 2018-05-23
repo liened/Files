@@ -70,4 +70,12 @@ Integer.parseInt("8C",16);
 三、show full columns from TB_XXX;  查询列信息和comment
 
 
+--------------------------------------------------------------------
+MySQL5.7 group by新特性，报错1055:
+ 1. select @@sql_mode
+ 2.这样就可以查出sql_mode的值，复制这个值，在my.cnf中添加配置项（把查询到的值删掉only_full_group_by这个选项，其他的都复制过去）：
+	或使用下面的命令:
+	set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+	set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+--------------------------------------------------------------------
 http://blog.csdn.net/liuzhoulong/article/details/51729168
