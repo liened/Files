@@ -170,6 +170,16 @@ Centos7 开放端口:
 	http://www.cnblogs.com/c-xiaohai/archive/2017/03.html CentOS7 Linux
 	http://blog.csdn.net/hunanchenxingyu/article/details/40544513   ssh 公钥认证方式登录
 	http://cgs1999.iteye.com/blog/2043008 【安装epel及rpm相关命令】
+	
+	http://ip.taobao.com/           【查看当前公网ip】
+        https://www.cnblogs.com/mu-ma/p/7829338.html     【xshell 登录阿里云 】
+        https://blog.csdn.net/z13615480737/article/details/78906598    【安装mysql】
+        http://www.jb51.net/article/121173.html  【设置远程连接mysql】
+ 
+        https://blog.csdn.net/hui_2016/article/details/69941850  【jdk】
+        https://blog.csdn.net/fwj380891124/article/details/41458727 【配置tomcat】
+        http://blog.51cto.com/001155/1617155 【安装openoffice】
+ 
 ==================================================================================
 安装telnet:
 1.在线安装
