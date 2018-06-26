@@ -5,12 +5,13 @@ CentOS root admin123
 ===================================
 一、CentOS 7 minimal 配置网卡以及使用CRT远程连接 http://jingyan.baidu.com/album/a681b0de7b463b3b184346fc.html?picindex=1
 	配置网卡:
-	1、查看网卡是否配置好；1、通过< ip a >命令找到你的网卡名
-	2、通过配置文件 vi /etc/sysconfig/network-scripts/ifcfg-eno16777736（通过ip a查找到的网卡名,此例中是ifcfg-eno16777736） 编辑网卡，将里面的NAME项修改为eth0,DEVICE=eth0 ONBOOT=yes
-	3、修改网卡名为eth0 mv ifcfg-eno16777736 ifcfg-eth0
-	4、通过编辑配置文件 vi /etc/default/grub并加入" net.ifnames=0 biosdevname=0 "到GRUB_CMDLINE_LINUX
-	5、运行命令grub2-mkconfig -o /boot/grub2/grub.cfg 来重新生成GRUB配置并更新内核参数。
-	6、重启系统，然后通过 < ip a > 验证。 
+	1、查看网卡是否配置好；1、通过 ip a 或者 ip addr 命令找到你的网卡名
+	2、修改配置文件：
+		/etc/sysconfig/network-scripts/文件夹下的
+		ifcfg-网卡名 （通过ip a查找到的网卡名,此例中是ifcfg-eno16777736） 编辑网卡修改： ONBOOT=yes
+	3、service network restart 重启
+	4、ip a 命令验证。 xshell连接前注意开放端口
+	
 
 	远程连接CentOS:
 	1.在Windows上ping一下CentOS的网卡如果能通用连接工具链接即可。
@@ -18,7 +19,7 @@ CentOS root admin123
 	
 	其他类似问题：
 	CentOS7 minimal无法联网：
-	1、nmcli d 查看ethernet是否连接
+	1、nmcli d 查看ethernet是否连接        https://www.cnblogs.com/hfyfpga/p/6262057.html
 	2、nmtui   网络配置图形化界面，编辑IPV4为自动，并勾选开机自动连接选项。
 	3、service network restart 重启										【【service 这个命令倒是和Ubuntu一样的】】
 	但是在编辑页面开机自动连接选项不能选择，所以此次方法没有生效。
