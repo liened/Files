@@ -1,81 +1,93 @@
-mysql日期和字符相互转换方法
-date_format(date,'%Y-%m-%d')    -------------->oracle中的to_char();
-str_to_date(date,'%Y-%m-%d')     -------------->oracle中的to_date();
+一、格式化
+	mysql日期和字符相互转换方法
+	date_format(date,'%Y-%m-%d')    -------------->oracle中的to_char();
+	str_to_date(date,'%Y-%m-%d')     -------------->oracle中的to_date();
 
-%Y：代表4位的年份【【【年】】】
-%y：代表2为的年份
- 
-%m：代表月, 格式为(01……12)  【【【月】】】
-%c：代表月, 格式为(1……12)
- 
-%d：代表月份中的天数,格式为(00……31)  【【【日】】】
-%e：代表月份中的天数, 格式为(0……31) 
- 
-%H：代表小时,格式为(00……23)  【【时】】
-%k：代表 小时,格式为(0……23)  
-%h： 代表小时,格式为(01……12)  
-%I： 代表小时,格式为(01……12)  
-%l ：代表小时,格式为(1……12)
-  
-%i： 代表分钟, 格式为(00……59) 【【分】】
+	%Y：代表4位的年份【【【年】】】
+	%y：代表2为的年份
+	 
+	%m：代表月, 格式为(01……12)  【【【月】】】
+	%c：代表月, 格式为(1……12)
+	 
+	%d：代表月份中的天数,格式为(00……31)  【【【日】】】
+	%e：代表月份中的天数, 格式为(0……31) 
+	 
+	%H：代表小时,格式为(00……23)  【【时】】
+	%k：代表 小时,格式为(0……23)  
+	%h： 代表小时,格式为(01……12)  
+	%I： 代表小时,格式为(01……12)  
+	%l ：代表小时,格式为(1……12)
+	  
+	%i： 代表分钟, 格式为(00……59) 【【分】】
 
-%r：代表 时间,格式为12 小时(hh:mm:ss [AP]M)  
-%T：代表 时间,格式为24 小时(hh:mm:ss) 【【【【【【【 格式化好的时分秒 】】】】】】】
+	%r：代表 时间,格式为12 小时(hh:mm:ss [AP]M)  
+	%T：代表 时间,格式为24 小时(hh:mm:ss) 【【【【【【【 格式化好的时分秒 】】】】】】】
 
-%S：代表 秒,格式为(00……59)  【【秒】】
-%s：代表 秒,格式为(00……59) 
+	%S：代表 秒,格式为(00……59)  【【秒】】
+	%s：代表 秒,格式为(00……59) 
 
-增加：alter table tablename add name type;
-删除：alter table tablename drop name ;
-修改：alter table tablename change oldname newname type ;
-修改属性：alter table tablename change oldname oldname type ;
-重命名字段：alter table tablename change oldname newname integer;
+二、DDL
+	增加：alter table tablename add name type;
+	删除：alter table tablename drop name ;
+	修改：alter table tablename change oldname newname type ;
+	修改属性：alter table tablename change oldname oldname type ;
+	重命名字段：alter table tablename change oldname newname integer;
 
+三、函数及技巧
+	nvl :       IFNULL(expr1,expr2) 
+	rownum:     select @rownum:=@rownum+1 AS rownum,c_col_name,e_col_name_s from   (SELECT @rownum:=0) r,songcongjie_cAndE_words where  c_col_name in ('最后','每')
+	to_number： ORDER BY cast(PERIOD_CURRENT as unsigned int)
+	两位小数:   SELECT FORMAT(12562.6655,2);
+	生成UUID：  SELECT REPLACE(UUID(),'-','') AS id from dual;
+	中文排序： convert(name using gbk)
+	查询时区分大小写：加上 binary 如：select * from sys_dict where binary type = 'Loan_acceptPerGradeCode';
+	行转列: SELECT group_concat(t.label) FROM sys_dict t WHERE t.type = t1.DICT_TYPE; 【group_concat】
+	分钟相加: DATE_ADD(CHECK_START_DATE, INTERVAL #{item.limitTime} MINUTE) 
+	日期之间: SELECT DATEDIFF('20181012','20181011'); 【DATEDIFF()】
+	查询列信息和comment： show full columns from TB_XXX;  
+	
+四、系统配置
+	4.1.Mybatis 批量更新的参数:	这是因为配置MySQL的时候没有开启批量插入，不开启的话只能允许操作一条sql语句，所以只需要修改一处即可：
+		将properties配置文件中的数据库连接信息URL后面添加上&allowMultiQueries=true就可以了
+	
+	4.2.MySQL5.7 group by新特性，报错1055:
+	 1. select @@sql_mode
+	 2.这样就可以查出sql_mode的值，复制这个值，在my.cnf中添加配置项（把查询到的值删掉only_full_group_by这个选项，其他的都复制过去）：
+		或使用下面的命令:
+		set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+		set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+	--------------------------------------------------------------------
+五、链接
+	http://blog.csdn.net/liuzhoulong/article/details/51729168 【MySQL一些SQL技巧】
+	
+	---------------------------------------------------------------------------------------------------
+	https://blog.csdn.net/leeyisoft/article/details/9184359 【order by的一些技巧】
+	1. 只按日期排序，忽略年份
+	> select date, description from table_name order by month(date),dayofmonth(date);
+	注意：单纯使用dayofyear来排序会导致错误，如2-29与非闰年的3-1日同等级
 
-nvl :       IFNULL(expr1,expr2) 
-rownum:     select @rownum:=@rownum+1 AS rownum,c_col_name,e_col_name_s from   (SELECT @rownum:=0) r,songcongjie_cAndE_words where  c_col_name in ('最后','每')
-to_number： ORDER BY cast(PERIOD_CURRENT as unsigned int)
-两位小数:   SELECT FORMAT(12562.6655,2);
-生成UUID：  SELECT REPLACE(UUID(),'-','') AS id from dual;
+	2. 排序点分式IP
+	> select ip from table_name order by inet_aton(ip);
+	或者在设计表时就使用 int unsigned 来表示ip。
 
-中文排序： convert(name using gbk)
+	3. 【将某列中特定值排在最前】
+	例如想把表中lulu的名字排在最前显示，其他按字母排序
+	> select name from table_name order by if(name='lulu',0,1),name ;
+	也可以把if的条件根据需要换成相应的语句。
 
-查询时区分大小写：加上 binary 如：select * from sys_dict where binary type = 'Loan_acceptPerGradeCode';
+	4. 将某列内容按照用户自定义的顺序排序
+	例如想把表中的名字按lulu,xixi,baba,mama的非常规顺序排序输出：
+	> select name from table_name order by field(name,'lulu','xixi','baba','mama');
 
-Mybatis 批量更新的参数:
-这是因为配置MySQL的时候没有开启批量插入，不开启的话只能允许操作一条sql语句，所以只需要修改一处即可：将properties配置文件中的数据库连接信息URL后面添加上&allowMultiQueries=true就可以了
+	5. 对枚举类型排序 【cast】
+	枚举类型默认为数字排序，如果希望以字符串形式排序。
+	> select name from table_name order by cast(name as char);
+	如果希望更改enum的排序默认顺序，可以alter table
+	alter table table_name modify name enum('lulu','xixi','mama','baba');
 
-
-简单springmvc需要的jar依赖：
-http://blog.csdn.net/frankcheng5143/article/details/50512340
-
-iCheck表单样式
-
-// 十进制转化为十六进制，结果为C8。
-Integer.toHexString(200);
- 
-// 十六进制转化为十进制，结果140。
-Integer.parseInt("8C",16);
-
-一、【【【行转列】】】：
-(
-		SELECT
-			group_concat(t.label)
-		FROM
-			sys_dict t
-		WHERE
-			t.type = t1.DICT_TYPE
-	)
-二、DATE_ADD(CHECK_START_DATE, INTERVAL #{item.limitTime} MINUTE) 分钟相加
-三、show full columns from TB_XXX;  查询列信息和comment
-
-
---------------------------------------------------------------------
-MySQL5.7 group by新特性，报错1055:
- 1. select @@sql_mode
- 2.这样就可以查出sql_mode的值，复制这个值，在my.cnf中添加配置项（把查询到的值删掉only_full_group_by这个选项，其他的都复制过去）：
-	或使用下面的命令:
-	set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
-	set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
---------------------------------------------------------------------
-http://blog.csdn.net/liuzhoulong/article/details/51729168
+	6. 按csv类型的字符串的某字串排序
+	例如某列m_str内容是形如abc-321-mno-jkl的形式，希望对第二列进行排序
+	> select m_str from table_name
+	order by substring_index(substring_index(m_str,'-',2),'-',-1);
+		
+	----------------------------------------------------------------------------------------------------

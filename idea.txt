@@ -1,3 +1,14 @@
+1.常用插件：
+	Rainbow Brackets 彩虹括号
+	CodeGlance 右侧代码预览
+	Alibaba Java Coding Guidelines 阿里代码规范
+	ECTranslation 翻译插件
+	Background Image Plus 背景图片
+2.idea 压制autowired编译异常 https://blog.csdn.net/leonliu06/article/details/79345910
+	方案1：添加注解 @SuppressWarnings("SpringJavaAutowiringInspection")
+	方案2：修改IntelliJ IDEA 代码查检级别。
+		File --> Settings打开设置，在Editor --> Inspections中，修改Spring Core --> Code --> Autowiring for Bean Class 是否检查 或 其Severity。
+
 2.IDEA编辑器
 	下载安装：http://www.cnblogs.com/yjmyzz/p/intellij-idea-13-getting-started.html  360浏览器不可下载，火狐可以
 	安装：http://jingyan.baidu.com/article/e75057f2c030ecebc91a89af.html

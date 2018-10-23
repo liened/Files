@@ -3,6 +3,9 @@ CentOS root admin123
       rootdog rootdog123
 	  tech tech123
 ===================================
+** https://blog.csdn.net/inslow/article/details/54177191 ** 【yum修改为国内镜像源 - 选择阿里的】
+
+
 一、CentOS 7 minimal 配置网卡以及使用CRT远程连接 http://jingyan.baidu.com/album/a681b0de7b463b3b184346fc.html?picindex=1
 	配置网卡:
 	1、查看网卡是否配置好；1、通过 ip a 或者 ip addr 命令找到你的网卡名

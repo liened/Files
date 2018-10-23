@@ -1,0 +1,30 @@
+1.圆角:     border-radius: 5px;
+2.阴影:    box-shadow: rgba(8, 1, 3, 0.14) 0px 3px 27px 0px, rgba(0, 0, 0, 0.05) 0px -1px 4px 0px inset;
+ 一个登录框样式的例子:
+    border-radius: 5px;
+    box-shadow: rgba(8, 1, 3, 0.14) 0px 3px 27px 0px, rgba(0, 0, 0, 0.05) 0px -1px 4px 0px inset;
+    border: 1px solid rgb(225, 225, 228);
+    background: rgb(240, 240, 242);
+
+ 修改后；
+		#背景图片不缩放并且适应不同的分辨率
+		.bgPic{
+			background-repeat: no-repeat;
+			background-image: url(/statics/images/banner.jpg);
+			width: 100%;
+			background-position: center 0;
+			background-attachment: fixed;
+			zoom: 1;
+			background-size: cover;
+		}
+		.log-div{
+			border-radius: 5px;
+			box-shadow: 0px 3px 27px 0px rgba(8, 1, 3, 0.14), inset 0px -1px 4px 0px rgba(0, 0, 0, 0.05);
+			border:1px solid rgb(225, 225, 228);
+			background: rgb(240, 240, 242);
+		}
+		
+3.内容过长样式处理
+	1.1). 自动处理为省略号: text-overflow : ellipsis;
+	1.2). 自动换行: white-space: normal !important; height:auto; 
+4.背景图片不缩放:     background-size: cover; (cover/contain)

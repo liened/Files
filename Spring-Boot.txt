@@ -42,7 +42,34 @@
 		1).启动项目用: mvn spring-boot:run 【【【重点，如果不是这样的话，ctrl+F9 手动刷新】】】
 		2).打开编码工具的自动编译(Idea在Compiler里) 【【重点，不小心就忘记了】】
 
+二、https://segmentfault.com/a/1190000013536448 【spring boot 2的变化】
+		
+		
+三、Mockmvc 编写单元测试    https://zhuanlan.zhihu.com/p/24957789
 	
+	@RunWith(SpringJUnit4ClassRunner.class)
+	@SpringBootTest(classes = MockServletContext.class)   --注意：老版本的springboot是@SpringApplicationConfiguration
+	@WebAppConfiguration
+	public class TestCtrl {
+
+		private MockMvc mvc;
+
+		@Before
+		public void setUp(){
+			mvc = MockMvcBuilders.standaloneSetup(new FirstController()).build();
+		}
+
+		@Test
+		public void getHello() throws Exception {
+			mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+					.andExpect(MockMvcResultMatchers.status().isOk())
+					.andDo(MockMvcResultHandlers.print())
+					.andReturn();
+		}
+	}
+	
+	
+
 	
 https://zhuanlan.zhihu.com/p/24965387 Filter Property
 

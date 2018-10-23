@@ -27,3 +27,39 @@
     if (StringUtils.isBlank(orgCd)){
         orgCd = StringUtils.join(channels,"','");
 	}
+
+7.org.slf4j.MDC 可向日志添加内容。最后使用完之后,使用 MDC.clear()来清除里面的值。
+	如：在日志中打印客户信息: 
+	示例：
+	public class AuthInterceptor implements org.springframework.web.servlet.HandlerInterceptor{
+		@Override
+		public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
+			//判断session是否超时
+			if(obj==null){
+				String path = request.getContextPath() + "/sessionTimeout?timeout=true";
+				response.sendRedirect(path);
+				return false;
+			}else if(!PubMethod.isEmpty(currentRoleIds)) {//currentRoleIds:session里面的值
+				MDC.put("userName", adminInfo.get(Sessions.USERINFO_DISPLAYNAME) == null ? "" : adminInfo.get(Sessions.USERINFO_DISPLAYNAME).toString());
+			}
+		@Override
+		public void postHandle(HttpServletRequest request,
+				HttpServletResponse response, Object handler,
+				ModelAndView modelAndView) throws Exception {
+			MDC.clear();
+		}
+	}
+	
+	logback配置中可以用 %X{userName}来打印。
+	附加：
+		%d 代表时间2006-10-20 14:06:49,812 
+	    %t 输出产生记录事件的线程名。
+	    X{key} 输出与产生记录事件的线程相关联的MDC。
+	    %p 输出记录事件的级别。
+	    %c 输出源记录事件的logger名。
+        %F 输出执行记录请求的Java源文件的文件名。
+        %L 输出执行记录请求的行号。
+        %M 输出执行记录请求的方法名。
+        %m 输出与记录事件相关联的应用程序提供的消息。
+        %n 输出与平台相关的行分隔符。	
+	

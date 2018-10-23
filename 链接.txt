@@ -62,3 +62,4 @@ http://www.cnblogs.com/ding2016/p/7892542.html 【redis 4.0.1集群 安装Ruby2.
  http://blog.51cto.com/001155/1617155     【安装openoffice】
  
 
+ https://www.cnblogs.com/liangzs/p/8855834.html 【gradle】

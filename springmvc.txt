@@ -1,0 +1,92 @@
+ POM:
+	 ------ Spring ---------
+	 spring-core     -- exclusion commons-logging
+	 spring-beans
+	 spring-context
+	 spring-context-support
+	 spring-aop      -- exclusion commons-logging
+	 spring-tx
+	 
+	 spring-orm
+	 spring-jdbc
+	  
+	 ---- orm & database -------
+	 mybatis
+	 mybatis-spring
+	 
+	 druid
+	 mysql-connector-java
+
+	 ------ AOP ---------
+	 aspectjrt
+	 aspectjweaver
+	 cglib
+	 
+	 ----- general utils ----
+	 commons-lang3
+	 commons-io
+	 commons-codec
+	 commons-fileupload
+	 commons-beanutils
+	 
+	 ------ WEB ------
+	 spring-web
+	 spring-webmvc
+	 spring-oxm
+	 servlet-api
+	 jsp-api
+	 standard
+	 jstl
+
+	 ------ log --------
+	 slf4j-api
+	 slf4j-log4j12
+	 jcl-over-slf4j
+	 jul-to-slf4j
+ 
+ web.xml:
+	context-param   contextConfigLocation   spring-context.xml
+	listener   		RequestContextListener
+	filter			encodingFilter CharacterEncodingFilter
+	servlet			DispatcherServlet  init-param:contextConfigLocation spring-mvc.xml
+	
+	filter          shiro	 DelegatingFilterProxy init-param:targetFilterLifecycle true
+	
+	
+spring-context:
+	<context-property-placeholder /> 		-- 加载配置属性文件
+	<util:propertie />						-- 可选，实现@Value获取属性
+	<context:component-scan /> 				-- 使用Annotation自动注册bean，解决事务失效问题不扫描@Controller
+	<validator /> 							-- JSR303 Bean Validator
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSoure">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">   定义事务
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="mapperScannerConfigurer"class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>	-- 开启事务扫描配：置Annotation驱动，扫描@Transactional注解的类定义事务 
+	
+spring-mvc:
+	<context-property-placeholder /> 		-- 加载配置属性文件
+	<context:component-scan /> 				-- 使用Annotation自动注册bean，只扫描@Controller
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">   	-- 定义视图解析器
+    <mvc:default-servlet-handler/>			-- 对静态资源的访问，将无法mapping到Controller的path交给default servlet handler 处理
+	下面的可选：
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>				-- 默认的注解映射的支持，配置项很多
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">  -- REST中根据URL后缀自动判定Content-Type及相应的View
+	
+-----------------------------------------------------------------------------
+1.ehcache:
+  1).引入两个jar包:
+	<dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>2.8.0</version>
+    </dependency>
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-ehcache</artifactId>
+          <version>1.0.0</version>
+      </dependency>
+  2).实体类序列化
+  3).xml里加上 <chache> : <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+   
