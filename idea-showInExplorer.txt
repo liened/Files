@@ -1,3 +1,0 @@
-1.右击工具栏，选择“Customize Menus and Toolbars...”。
-2.弹出对话框，展开“Main Toolbar”，找到并单击最后一个(我的是Tasks toolbar)，单击右侧的“Add After”。
-3.弹出的对话框中，展开“Other”项，找到“Show in explorer”,保存即可。
