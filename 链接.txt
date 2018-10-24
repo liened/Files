@@ -38,6 +38,19 @@ http://blog.csdn.net/ufo2910628/article/details/40399539【springmvc exception�
 http://blog.csdn.net/lonely_fireworks/article/details/7962171/ 【String.format()】
 
 
+http://ifeve.com/java-blocking-queue/ 【聊聊并发（七）——Java中的阻塞队列】
+
+https://blog.csdn.net/yiifaa/article/details/72852572 【Spring Boot总结(一)：@SpringBootApplication的替代方案】
+
+http://www.cnblogs.com/chenkeyu/p/9017996.html 【原生Feign使用详解】
+
+https://blog.csdn.net/u014281502/article/details/72896182 【Feign发送Get请求时怎么用对象传递参数】
+
+https://blog.csdn.net/zx1323/article/details/79088713 @Header 等 【fegin 使用https 遇到 PKIX path building failed】
+https://blog.csdn.net/mrspirit/article/details/80347876 【feign中实体类和JSON字符串的转换和传输】
+
+
+
 http://blog.csdn.net/forezp/article/details/70198541 【python分词云图】
 http://blog.csdn.net/forezp/article/details/70148833 【spring cloud要点汇总】
 
