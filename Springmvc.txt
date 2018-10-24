@@ -88,5 +88,7 @@ spring-mvc:
       </dependency>
   2).实体类序列化
   3).xml里加上 <chache> : <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+-----------------------------------------------------------------------------
+简单springmvc需要的jar依赖：http://blog.csdn.net/frankcheng5143/article/details/50512340
 
    
