@@ -63,6 +63,7 @@ Linux ------------------------------------------------
 	(4)  清除用户的权限信息
 		rabbitmqctl  clear_permissions  [-p VHostPath]  User
 		
-		
+6.集群：
+	https://www.jianshu.com/p/6376936845ff
 		
 		
