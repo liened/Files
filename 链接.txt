@@ -1,78 +1,59 @@
-http://redmine.cssrv.dataengine.com/redmine/login?back_url=http%3A%2F%2Fredmine.cssrv.dataengine.com%2Fredmine%2Fprojects 【redmine】
-https://ant.design/components/table-cn/  【ant design】
-http://www.cnblogs.com/PeunZhang/p/5553574.html npm
+前端:
+	http://redmine.cssrv.dataengine.com/redmine/login?back_url=http%3A%2F%2Fredmine.cssrv.dataengine.com%2Fredmine%2Fprojects 【redmine】
+	https://ant.design/components/table-cn/  【ant design】
+	http://www.cnblogs.com/PeunZhang/p/5553574.html npm
+	http://fontawesome.dashgame.com/ 图标库连接
+	http://www.jianshu.com/p/42e11515c10f webpack
+	
+	
+java:
+	https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS cors
+		response.setHeader("Access-Control-Allow-Origin","*");//解决跨域问题
+		response.setHeader("Access-Control-Allow-Credentials","true"); //解决cookie问题
 
-https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS cors
-response.setHeader("Access-Control-Allow-Origin","*");//解决跨域问题
-response.setHeader("Access-Control-Allow-Credentials","true"); //解决cookie问题
+	http://www.uml.org.cn/j2ee/201812073.asp  java内存模型
+	http://ifeve.com/java-blocking-queue/ 【聊聊并发（七）——Java中的阻塞队列】
+	http://blog.csdn.net/luckybug007/article/details/70053596 【三个线程ABC，交替打印ABC】
+	http://www.importnew.com/21889.html 【Java并发编程：CountDownLatch、CyclicBarrier和 Semaphore】
+	http://www.importnew.com/15731.html 【CountDownLatch、CyclicBarrier不同】
+	http://blog.csdn.net/lonely_fireworks/article/details/7962171/ 【String.format()】
 
-http://www.jianshu.com/p/34730e595a8c 多数据源
+	http://www.jianshu.com/p/34730e595a8c springboot多数据源
+	http://blog.csdn.net/sadfishsc/article/details/47160213 【springmvc logback】
+	http://blog.csdn.net/ufo2910628/article/details/40399539【springmvc exception处理】
+	https://blog.csdn.net/yiifaa/article/details/72852572 【Spring Boot总结(一)：@SpringBootApplication的替代方案】
+	http://blog.csdn.net/forezp/article/details/70148833 【spring cloud要点汇总】
+	
+	http://www.cnblogs.com/chenkeyu/p/9017996.html 【原生Feign使用详解】
+	https://blog.csdn.net/u014281502/article/details/72896182 【Feign发送Get请求时怎么用对象传递参数】
+	https://blog.csdn.net/zx1323/article/details/79088713 @Header 等 【fegin 使用https 遇到 PKIX path building failed】
+	https://blog.csdn.net/mrspirit/article/details/80347876 【feign中实体类和JSON字符串的转换和传输】
 
-
-http://www.cnblogs.com/HondaHsu/p/3641116.html  MySQL与Oracle 差异比较之一数据类型
-http://git.oschina.net/progit/index.html  git介绍
-
-
-
-
-
-1.打开方式中没有NotePad++，解决方法链接：http://blog.csdn.net/jl1134069094/article/details/50749075
-
-http://www.jiuzhang.com/solutions/ leetCode 答案
-
-http://fontawesome.dashgame.com/ 图标库连接
-
-http://www.uml.org.cn/  火龙果
-
-
-http://www.jianshu.com/p/42e11515c10f webpack
-
-http://blog.csdn.net/luckybug007/article/details/70053596 【三个线程ABC，交替打印ABC】
-http://www.importnew.com/21889.html 【Java并发编程：CountDownLatch、CyclicBarrier和 Semaphore】
-http://www.importnew.com/15731.html 【CountDownLatch、CyclicBarrier不同】
-
-http://blog.csdn.net/sadfishsc/article/details/47160213 【springmvc logback】
-http://blog.csdn.net/ufo2910628/article/details/40399539【springmvc exception处理】
-
-
-http://blog.csdn.net/lonely_fireworks/article/details/7962171/ 【String.format()】
+数据库:
+	http://www.cnblogs.com/HondaHsu/p/3641116.html  MySQL与Oracle 差异比较之一数据类型
+	https://blog.csdn.net/z13615480737/article/details/78906598  【安装mysql】
+	http://www.jb51.net/article/121173.html						【设置远程连接mysql】
+	https://blog.csdn.net/u012006689/article/details/73195837 【mysql中各种索引】
 
 
-http://ifeve.com/java-blocking-queue/ 【聊聊并发（七）——Java中的阻塞队列】
+Linux:
+	https://www.xiaohuai.com/3810 【centos 登录后显示欢迎信息 /etc/motd】
+	https://www.xiaohuai.com/3806 【centos 登录后显示系统信息 /root/.bash_profile】
+	http://blog.csdn.net/jcxch/article/details/50494087 【centos 登录后显示欢迎信息 /etc/issue】
 
-https://blog.csdn.net/yiifaa/article/details/72852572 【Spring Boot总结(一)：@SpringBootApplication的替代方案】
+	http://cgs1999.iteye.com/blog/2043008 【安装epel及rpm相关命令】
+	http://www.cnblogs.com/ding2016/p/7892542.html 【redis 4.0.1集群 安装Ruby2.2.3】
 
-http://www.cnblogs.com/chenkeyu/p/9017996.html 【原生Feign使用详解】
+	https://www.cnblogs.com/mu-ma/p/7829338.html     【xshell 登录阿里云 】
+	http://ip.taobao.com/    【查看当前公网ip】
+	https://blog.csdn.net/hui_2016/article/details/69941850  【jdk】
+	https://blog.csdn.net/fwj380891124/article/details/41458727 【配置tomcat】
+	http://blog.51cto.com/001155/1617155     【安装openoffice】
 
-https://blog.csdn.net/u014281502/article/details/72896182 【Feign发送Get请求时怎么用对象传递参数】
-
-https://blog.csdn.net/zx1323/article/details/79088713 @Header 等 【fegin 使用https 遇到 PKIX path building failed】
-https://blog.csdn.net/mrspirit/article/details/80347876 【feign中实体类和JSON字符串的转换和传输】
-
-
-
-http://blog.csdn.net/forezp/article/details/70198541 【python分词云图】
-http://blog.csdn.net/forezp/article/details/70148833 【spring cloud要点汇总】
-
-
-https://www.xiaohuai.com/3810 【centos 登录后显示欢迎信息 /etc/motd】
-https://www.xiaohuai.com/3806 【centos 登录后显示系统信息 /root/.bash_profile】
-http://blog.csdn.net/jcxch/article/details/50494087 【centos 登录后显示欢迎信息 /etc/issue】
-
-http://cgs1999.iteye.com/blog/2043008 【安装epel及rpm相关命令】
-
-
-http://www.cnblogs.com/ding2016/p/7892542.html 【redis 4.0.1集群 安装Ruby2.2.3】
-
-
- http://ip.taobao.com/    【查看当前公网ip】
- https://www.cnblogs.com/mu-ma/p/7829338.html     【xshell 登录阿里云 】
- https://blog.csdn.net/z13615480737/article/details/78906598  【安装mysql】
- http://www.jb51.net/article/121173.html						【设置远程连接mysql】
- 
- https://blog.csdn.net/hui_2016/article/details/69941850  【jdk】
- https://blog.csdn.net/fwj380891124/article/details/41458727 【配置tomcat】
- http://blog.51cto.com/001155/1617155     【安装openoffice】
- 
-
- https://www.cnblogs.com/liangzs/p/8855834.html 【gradle】
+其他:
+	http://git.oschina.net/progit/index.html  git介绍
+	http://blog.csdn.net/jl1134069094/article/details/50749075 打开方式中没有NotePad++
+	http://www.jiuzhang.com/solutions/ 【leetCode 答案】
+	http://www.uml.org.cn/  火龙果
+	http://blog.csdn.net/forezp/article/details/70198541 【python分词云图】
+	https://www.cnblogs.com/liangzs/p/8855834.html 【idea中使用gradle】
