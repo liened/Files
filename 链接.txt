@@ -34,7 +34,7 @@ java:
 	https://blog.csdn.net/z13615480737/article/details/78906598  【安装mysql】
 	http://www.jb51.net/article/121173.html						【设置远程连接mysql】
 	https://blog.csdn.net/u012006689/article/details/73195837 【mysql中各种索引】
-
+	https://www.cnblogs.com/tgycoder/p/5410057.html 		  【数据库索引】
 
 Linux:
 	https://www.xiaohuai.com/3810 【centos 登录后显示欢迎信息 /etc/motd】
