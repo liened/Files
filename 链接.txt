@@ -58,3 +58,4 @@ Linux:
 	http://www.uml.org.cn/  火龙果
 	http://blog.csdn.net/forezp/article/details/70198541 【python分词云图】
 	https://www.cnblogs.com/liangzs/p/8855834.html 【idea中使用gradle】
+	https://segmentfault.com/a/1190000012104165  【SourceTree 免注册免登陆防坑法（windows版本）】
