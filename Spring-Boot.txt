@@ -1,3 +1,35 @@
+MybatisPlus:
+		<!-- mybatisplus -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus</artifactId>
+			<version>2.1.9</version>
+		</dependency>
+		<!-- mybatisplus 配置文件会用 -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatisplus-spring-boot-starter</artifactId>
+			<version>1.0.5</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>tomcat-jdbc</artifactId>
+					<groupId>org.apache.tomcat</groupId>
+				</exclusion>
+				<!--<exclusion>-->
+					<!--<artifactId>HikariCP</artifactId>-->
+					<!--<groupId>com.zaxxer</groupId>-->
+				<!--</exclusion>-->
+				<exclusion>
+					<artifactId>spring-boot-starter</artifactId>
+					<groupId>org.springframework.boot</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+使用mybatisPlus，Entity继承Model类，通过Entity也可以直接操作数据库相关方法，但是虽然不用Service了，Mapper却必须要有，不然会报错。
+详见: https://www.jianshu.com/p/a4d5d310daf8
+
+
 一、热部署的两种方式：spring-boot-devtools 和 springloaded
 	【总结：spring-boot-devtools 是热启动,springloaded是热部署】
 	1).devtools:
