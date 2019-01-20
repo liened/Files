@@ -30,8 +30,8 @@
 	 commons-beanutils
 	 
 	 ------ WEB ------
-	 spring-web
-	 spring-webmvc
+	 spring-web       ContextLoaderListener
+	 spring-webmvc    DispatcherServlet
 	 spring-oxm
 	 servlet-api
 	 jsp-api
@@ -46,7 +46,7 @@
  
  web.xml:
 	context-param   contextConfigLocation   spring-context.xml
-	listener   		RequestContextListener
+	listener   		ContextLoaderListener  RequestContextListener?为啥当时写这个
 	filter			encodingFilter CharacterEncodingFilter
 	servlet			DispatcherServlet  init-param:contextConfigLocation spring-mvc.xml
 	

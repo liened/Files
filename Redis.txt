@@ -27,3 +27,5 @@ http://www.cnblogs.com/ding2016/p/7892542.html 【redis 4.0.1集群 安装Ruby2.2.3】
 https://www.cnblogs.com/ding2016/p/7903147.html  【centos7/rhel7安装较高版本ruby2.2/2.3/2.4+】
 
 https://www.cnblogs.com/wangchunniu1314/p/6339416.html 【安装详解】
+
+https://www.cnblogs.com/AndyAo/p/8135980.html 【reids两种持久化方式】

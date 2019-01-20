@@ -77,7 +77,7 @@ CentOS root admin123
 	13.查看是否拒绝 firewall-cmd --query-panic
 	14.将接口添加到区域(默认接口都在public)  firewall-cmd --zone=public --add-interface=eth0(永久生效再加上 --permanent 然后reload防火墙)
 	15.设置默认接口区域 firewall-cmd --set-default-zone=public(立即生效，无需重启)
-	16.更新防火墙规则 firewall-cmd --reload或firewall-cmd --complete-reload(两者的区别就是第一个无需断开连接，就是firewalld特性之一动态添加规则，第二个需要断开连接，类似重启服务)
+	16.更新防火墙规则 firewall-cmd --reload 或firewall-cmd --complete-reload(两者的区别就是第一个无需断开连接，就是firewalld特性之一动态添加规则，第二个需要断开连接，类似重启服务)
   【17】.查看指定区域所有打开的端口 firewall-cmd --zone=public --list-ports
   【18】.在指定区域打开端口（记得重启防火墙）firewall-cmd --zone=public --add-port=80/tcp –-permanent(永久生效再加上 --permanent)
 	说明：

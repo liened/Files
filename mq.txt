@@ -1,0 +1,8 @@
+https://blog.csdn.net/hannuotayouxi/article/details/79397446 一、kafka原理、部署安装、常用命令
+https://blog.csdn.net/yk200808/article/details/81295860?utm_source=blogxgwz0  kafka消费延时解决实战【意想不到的消费逻辑优化】
+https://blog.csdn.net/buyaoxx/article/details/77606632  Kafka中时间轮分析与Java实现
+
+
+RocketMQ:
+https://blog.csdn.net/wangmx1993328/article/details/81536168 【安装及启动】
+https://www.cnblogs.com/xiaodf/p/5075167.html 【各部分介绍】
