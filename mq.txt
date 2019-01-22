@@ -6,3 +6,19 @@ https://blog.csdn.net/buyaoxx/article/details/77606632  Kafka中时间轮分析�
 RocketMQ:
 https://blog.csdn.net/wangmx1993328/article/details/81536168 【安装及启动】
 https://www.cnblogs.com/xiaodf/p/5075167.html 【各部分介绍】
+启动:
+	1.distribution/target/apache-rocketmq
+	1.1.先启动namesrv,然后启动broker
+		nohup sh bin/mqnamesrv &  //查看日志能看到: The Name Server boot success则成功
+		tail -f ~/logs/rocketmqlogs/namesrv.log
+		当前文件夹也会生成一个nohup.out 的日志文件，可以打开查看 namesrv 的启动情况。
+		/*
+			nohup sh mqnamesrv & ：属于后台启动
+			sh mqnamesrv ：属于终端启动，直接输出日志信息，按 ctrl+c 可直接关闭退出
+		*/
+	1.2.启动Broker:
+		nohup sh bin/mqbroker -n localhost:9876 & 注意ip地址要配置成服务的ip地址，保证地址及端口能够访问
+		tail -f ~/logs/rocketmqlogs/broker.log
+		
+		
+https://www.cnblogs.com/Jtianlin/p/8436024.html 说是有坑
