@@ -1,24 +1,32 @@
-https://blog.csdn.net/hannuotayouxi/article/details/79397446 一、kafka原理、部署安装、常用命令
-https://blog.csdn.net/yk200808/article/details/81295860?utm_source=blogxgwz0  kafka消费延时解决实战【意想不到的消费逻辑优化】
-https://blog.csdn.net/buyaoxx/article/details/77606632  Kafka中时间轮分析与Java实现
+1.kafka
+	https://blog.csdn.net/hannuotayouxi/article/details/79397446 一、kafka原理、部署安装、常用命令
+	https://blog.csdn.net/yk200808/article/details/81295860?utm_source=blogxgwz0  kafka消费延时解决实战【意想不到的消费逻辑优化】
+	https://blog.csdn.net/buyaoxx/article/details/77606632  Kafka中时间轮分析与Java实现
+
+	https://www.cnblogs.com/frankdeng/p/9584870.html 【kafka-manage】
+
+	https://www.cnblogs.com/yinchengzhe/p/5126360.html 【kafka管理器kafka-manager部署安装】
 
 
 RocketMQ:
-https://blog.csdn.net/wangmx1993328/article/details/81536168 【安装及启动】
-https://www.cnblogs.com/xiaodf/p/5075167.html 【各部分介绍】
-启动:
-	1.distribution/target/apache-rocketmq
-	1.1.先启动namesrv,然后启动broker
-		nohup sh bin/mqnamesrv &  //查看日志能看到: The Name Server boot success则成功
-		tail -f ~/logs/rocketmqlogs/namesrv.log
-		当前文件夹也会生成一个nohup.out 的日志文件，可以打开查看 namesrv 的启动情况。
-		/*
-			nohup sh mqnamesrv & ：属于后台启动
-			sh mqnamesrv ：属于终端启动，直接输出日志信息，按 ctrl+c 可直接关闭退出
-		*/
-	1.2.启动Broker:
-		nohup sh bin/mqbroker -n localhost:9876 & 注意ip地址要配置成服务的ip地址，保证地址及端口能够访问
-		tail -f ~/logs/rocketmqlogs/broker.log
+	https://blog.csdn.net/wangmx1993328/article/details/81536168 【安装及启动】
+	https://www.cnblogs.com/xiaodf/p/5075167.html 【各部分介绍】
+	https://www.cnblogs.com/quchunhui/p/7284752.html 【解决console时的timeout异常】 原因是isVIPChannel默认为true，会监控rocketmq的vip通道，将该属性设置为false即可。
+
+	启动:
+		1.distribution/target/apache-rocketmq
+		1.1.先启动namesrv,然后启动broker
+			nohup sh bin/mqnamesrv &  //查看日志能看到: The Name Server boot success则成功
+			tail -f ~/logs/rocketmqlogs/namesrv.log
+			当前文件夹也会生成一个nohup.out 的日志文件，可以打开查看 namesrv 的启动情况。
+			/*
+				nohup sh mqnamesrv & ：属于后台启动
+				sh mqnamesrv ：属于终端启动，直接输出日志信息，按 ctrl+c 可直接关闭退出
+			*/
+		1.2.启动Broker:
+			nohup sh bin/mqbroker -n localhost:9876 & 注意ip地址要配置成服务的ip地址，保证地址及端口能够访问
+			tail -f ~/logs/rocketmqlogs/broker.log
 		
-		
-https://www.cnblogs.com/Jtianlin/p/8436024.html 说是有坑
+		创建topic:	sh mqadmin updateTopic -n 192.168.133.129:9876 -c DefaultCluster -t myTopic
+			
+	https://www.cnblogs.com/Jtianlin/p/8436024.html 说是有坑
