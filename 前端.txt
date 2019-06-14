@@ -28,3 +28,11 @@
 	1.1). 自动处理为省略号: text-overflow : ellipsis;
 	1.2). 自动换行: white-space: normal !important; height:auto; 
 4.背景图片不缩放:     background-size: cover; (cover/contain)
+
+http://www.cnblogs.com/thirteen-zxh/p/9529938.html layui数据表格使用（一：基础篇，数据展示、分页组件、表格内嵌表单和图片）
+
+https://www.layui.com/doc/modules/table.html#cols layui官方文档说明cols
+
+https://blog.csdn.net/weixin_41690497/article/details/84565891 layui表格展示图片
+
+https://blog.csdn.net/Luzaofa/article/details/80794927   如何更改layui form表单位置，宽度，颜色等

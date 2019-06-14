@@ -9,6 +9,8 @@
 
 
 RocketMQ:
+	https://www.jianshu.com/p/2838890f3284 【简书】
+	http://www.cnblogs.com/520playboy/p/6750023.html 【顺序消费和事务消费】
 	https://blog.csdn.net/wangmx1993328/article/details/81536168 【安装及启动】
 	https://www.cnblogs.com/xiaodf/p/5075167.html 【各部分介绍】
 	https://www.cnblogs.com/quchunhui/p/7284752.html 【解决console时的timeout异常】 原因是isVIPChannel默认为true，会监控rocketmq的vip通道，将该属性设置为false即可。
